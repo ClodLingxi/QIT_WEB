@@ -5,15 +5,16 @@
       <ProjectProfile>
         <option name="addSchemaName" value="true" />
         <option name="controllerTemplateString" value="&#10;#* @vtlvariable name=&quot;tableName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;entityPackageName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;entityClassName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;servicePackageName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;serviceInterfacePackage&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;serviceClassName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;serviceInterfaceClassName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;mapperPackageName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;mapperClassName&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;controllerPackage&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;tableRemark&quot; type=&quot;java.lang.String&quot; *#&#10;#* @vtlvariable name=&quot;myDate&quot; type=&quot;java.util.Date&quot; *#&#10;#* @vtlvariable name=&quot;simpleDateFormat&quot; type=&quot;java.text.SimpleDateFormat&quot; *#&#10;package $!{controllerPackage};&#10;import $!{entityPackageName}.$!{entityClassName};&#10;###set($realServiceName = $!{serviceClassName}+'Impl')&#10;import $!{servicePackageName}.$!{serviceClassName};&#10;import org.springframework.web.bind.annotation.*;&#10;&#10;#set($serviceFirstLower = $!{serviceClassName.substring(0,1).toLowerCase()}+$!{serviceClassName.substring(1,$!{serviceClassName.length()})})&#10;import org.springframework.beans.factory.annotation.Autowired;&#10;&#10;/**&#10;* $!{tableRemark}($!{tableName})表控制层&#10;*&#10;* @author xxxxx&#10;*/&#10;@RestController&#10;@RequestMapping(&quot;/$!{tableName}&quot;)&#10;public class $!{entityClassName}Controller {&#10;/**&#10;* 服务对象&#10;*/&#10;    @Autowired&#10;    private $!{serviceClassName} $!{serviceFirstLower};&#10;&#10;    /**&#10;    * 通过主键查询单条数据&#10;    *&#10;    * @param id 主键&#10;    * @return 单条数据&#10;    */&#10;    @GetMapping(&quot;selectOne&quot;)&#10;    public $!{entityClassName} selectOne(Integer id) {&#10;    return $!{serviceFirstLower}.selectByPrimaryKey(id);&#10;    }&#10;&#10;}" />
+        <option name="customizedLombokValue" value="" />
         <option name="database" value="MySql" />
-        <option name="generateService" value="true" />
         <option name="javaMapperPackage" value="edu.ouc.stu.mapper" />
         <option name="javaMapperPath" value="$PROJECT_DIR$/src/main/java" />
         <option name="javaModelPackage" value="edu.ouc.stu.model" />
-        <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java/edu/ouc/stu/model" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java" />
         <option name="javaxValidation" value="true" />
         <option name="lastDatabaseCrudChooseModuleName" value="QIT" />
-        <option name="lombokDataAnnotation" value="true" />
+        <option name="lombokBuilderAnnotation" value="true" />
+        <option name="lombokGetterSetterAnnotation" value="true" />
         <option name="mapperAnnotaion" value="true" />
         <option name="modelAddToString" value="true" />
         <option name="moduleNameToPackageAndPathMap">
@@ -24,7 +25,7 @@
                   <option name="javaMapperPackage" value="edu.ouc.stu.mapper" />
                   <option name="javaMapperPath" value="$PROJECT_DIR$/src/main/java" />
                   <option name="javaModelPacakge" value="edu.ouc.stu.model" />
-                  <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java/edu/ouc/stu/model" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java" />
                   <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/src/main/java" />
                   <option name="javaServicePackage" value="edu.ouc.stu.servlet" />
                   <option name="javaServicePath" value="$PROJECT_DIR$/src/main/java/edu/ouc/stu/servlet" />
@@ -80,6 +81,8 @@
                   <option name="javaModelName" value="TbJob" />
                   <option name="moduleName" value="QIT" />
                   <option name="mybatisplusIdType" value="INPUT" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
                   <option name="useActualColumnName" value="false" />
                 </TableGenerateConfig>
               </value>

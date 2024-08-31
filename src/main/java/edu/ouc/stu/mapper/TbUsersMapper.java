@@ -50,6 +50,10 @@ public interface TbUsersMapper {
      */
     TbUsers selectByPrimaryKey(Integer userId);
 
+    /**
+     * select all users
+     * @return List of Users
+     */
     List<TbUsers> selectAllUsers();
 
     /**

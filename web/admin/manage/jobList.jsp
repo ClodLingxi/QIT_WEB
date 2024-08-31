@@ -6,7 +6,7 @@
 <%
     TbUsers passport = (TbUsers) session.getAttribute("passport");
     if (passport != null && Tomcat.userManager.validate(passport) != null) {
-        request.setAttribute("userList", Tomcat.userManager.selectAllUsers());
+        request.setAttribute("jobList", Tomcat.jobMapper.selectAllJobs());
     }
 %>
 
@@ -46,16 +46,16 @@
         </thead>
         <tbody>
 
-        <jstl:forEach items="${JobList}" var="job">
+        <jstl:forEach items="${jobList}" var="job">
             <tr height="50px">
-                <td>${job.name}</td>
-                <td>${job.company}</td>
-                <td>${job.capacity}</td>
-                <td>${job.apply}</td>
-                <td>${job.endDate}</td>
-                <td>${job.state.toString()}</td>
+                <td>${job.jobName}</td>
+                <td>${job.companyId}</td>
+                <td>${job.jobHiringnum}</td>
+                <td>${job.jobApplicantnum}</td>
+                <td>${job.jobEnddate}</td>
+                <td>${job.jobState}</td>
                 <td ><a href="#" class="tablelink">修改</a> &nbsp;&nbsp;
-                    <a href="${pageContext.request.contextPath}/JobServlet?type=delete&id=${job.id}" class="tablelink"> 删除</a></td>
+                    <a href="${pageContext.request.contextPath}/JobServlet?type=delete&id=${job.jobId}" class="tablelink"> 删除</a></td>
             </tr>
         </jstl:forEach>
 

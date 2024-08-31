@@ -1,29 +1,44 @@
 package edu.ouc.stu.model;
 
+import java.util.Date;
+
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
-@Setter
 @Getter
+@Setter
+@Builder
 public class TbJob {
     private Integer jobId;
 
-    private Integer companyId;
-
     private String jobName;
+
+    private Integer companyId;
 
     private Integer jobHiringnum;
 
-    private String jobSalary;
+    private Integer jobApplicantnum;
 
-    private String jobArea;
+    private Date jobEnddate;
 
-    private String jobDesc;
+    private Byte jobState;
 
-    private Date jobEndtime;
+    public static TbJob getInstance(HttpServletRequest req, int userId) {
+        TbJob tbJob = getInstance(req);
+        if (tbJob != null) {
+            tbJob.setJobId(userId);
+        }
+        return tbJob;
+    }
 
-    private Integer jobState;
+    public static TbJob getInstance(HttpServletRequest req) {
 
+//        if (userName != null && userPwd != null && userRealname != null && userEmail != null
+//                && userRole != null && userState != null) {
+//            return new TbJob(-1, userName, userPwd, userRealname, userEmail, Integer.parseInt(userRole), Integer.parseInt(userState));
+//        } return null;
+        return null;
+    }
 }

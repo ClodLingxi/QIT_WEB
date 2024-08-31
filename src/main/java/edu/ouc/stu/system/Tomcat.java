@@ -16,9 +16,11 @@ import java.io.InputStream;
 @WebListener
 public class Tomcat implements ServletContextListener {
 
+    public static SqlSession sqlSession;
+
     public static TbUsersMapper userManager;
     public static TbJobMapper jobMapper;
-    public static SqlSession sqlSession;
+
 
     @SneakyThrows
     public void contextInitialized(ServletContextEvent sce) {

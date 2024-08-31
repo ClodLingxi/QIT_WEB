@@ -3,10 +3,13 @@ package edu.ouc.stu.mapper;
 import edu.ouc.stu.model.TbJob;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface TbJobMapper {
     /**
      * delete by primary key
+     *
      * @param jobId primaryKey
      * @return deleteCount
      */
@@ -14,6 +17,7 @@ public interface TbJobMapper {
 
     /**
      * insert record to table
+     *
      * @param record the record
      * @return insert count
      */
@@ -21,6 +25,7 @@ public interface TbJobMapper {
 
     /**
      * insert record to table selective
+     *
      * @param record the record
      * @return insert count
      */
@@ -28,13 +33,22 @@ public interface TbJobMapper {
 
     /**
      * select by primary key
+     *
      * @param jobId primary key
      * @return object by primary key
      */
     TbJob selectByPrimaryKey(Integer jobId);
 
     /**
+     * select all jobs
+     *
+     * @return List of Jobs
+     */
+    List<TbJob> selectAllJobs();
+
+    /**
      * update record selective
+     *
      * @param record the updated record
      * @return update count
      */
@@ -42,6 +56,7 @@ public interface TbJobMapper {
 
     /**
      * update record
+     *
      * @param record the updated record
      * @return update count
      */

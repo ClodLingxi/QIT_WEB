@@ -3,96 +3,86 @@
 <mapper namespace="edu.ouc.stu.mapper.TbJobMapper">
   <resultMap id="BaseResultMap" type="edu.ouc.stu.model.TbJob">
     <!--@mbg.generated-->
-    <!--@Table tb_job-->
-    <id column="JOB_ID" jdbcType="INTEGER" property="jobId" />
-    <result column="COMPANY_ID" jdbcType="INTEGER" property="companyId" />
-    <result column="JOB_NAME" jdbcType="VARCHAR" property="jobName" />
-    <result column="JOB_HIRINGNUM" jdbcType="INTEGER" property="jobHiringnum" />
-    <result column="JOB_SALARY" jdbcType="VARCHAR" property="jobSalary" />
-    <result column="JOB_AREA" jdbcType="VARCHAR" property="jobArea" />
-    <result column="JOB_DESC" jdbcType="VARCHAR" property="jobDesc" />
-    <result column="JOB_ENDTIME" jdbcType="TIMESTAMP" property="jobEndtime" />
-    <result column="JOB_STATE" jdbcType="INTEGER" property="jobState" />
+    <!--@Table qit.tb_job-->
+    <id column="job_id" jdbcType="INTEGER" property="jobId" />
+    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="job_hiringNum" jdbcType="INTEGER" property="jobHiringnum" />
+    <result column="job_applicantNum" jdbcType="INTEGER" property="jobApplicantnum" />
+    <result column="job_endDate" jdbcType="DATE" property="jobEnddate" />
+    <result column="job_state" jdbcType="TINYINT" property="jobState" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    JOB_ID, COMPANY_ID, JOB_NAME, JOB_HIRINGNUM, JOB_SALARY, JOB_AREA, JOB_DESC, JOB_ENDTIME, 
-    JOB_STATE
+    job_id, job_name, company_id, job_hiringNum, job_applicantNum, job_endDate, job_state
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
     from tb_job
-    where JOB_ID = #{jobId,jdbcType=INTEGER}
+    where job_id = #{jobId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllJobs" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbJob">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_job
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
     delete from tb_job
-    where JOB_ID = #{jobId,jdbcType=INTEGER}
+    where job_id = #{jobId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="JOB_ID" keyProperty="jobId" parameterType="edu.ouc.stu.model.TbJob" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="job_id" keyProperty="jobId" parameterType="edu.ouc.stu.model.TbJob" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into tb_job (COMPANY_ID, JOB_NAME, JOB_HIRINGNUM, 
-      JOB_SALARY, JOB_AREA, JOB_DESC, 
-      JOB_ENDTIME, JOB_STATE)
-    values (#{companyId,jdbcType=INTEGER}, #{jobName,jdbcType=VARCHAR}, #{jobHiringnum,jdbcType=INTEGER}, 
-      #{jobSalary,jdbcType=VARCHAR}, #{jobArea,jdbcType=VARCHAR}, #{jobDesc,jdbcType=VARCHAR}, 
-      #{jobEndtime,jdbcType=TIMESTAMP}, #{jobState,jdbcType=INTEGER})
+    insert into tb_job (job_name, company_id, job_hiringNum, 
+      job_applicantNum, job_endDate, job_state
+      )
+    values (#{jobName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{jobHiringnum,jdbcType=INTEGER}, 
+      #{jobApplicantnum,jdbcType=INTEGER}, #{jobEnddate,jdbcType=DATE}, #{jobState,jdbcType=TINYINT}
+      )
   </insert>
-  <insert id="insertSelective" keyColumn="JOB_ID" keyProperty="jobId" parameterType="edu.ouc.stu.model.TbJob" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="job_id" keyProperty="jobId" parameterType="edu.ouc.stu.model.TbJob" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into tb_job
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="companyId != null">
-        COMPANY_ID,
-      </if>
       <if test="jobName != null">
-        JOB_NAME,
+        job_name,
+      </if>
+      <if test="companyId != null">
+        company_id,
       </if>
       <if test="jobHiringnum != null">
-        JOB_HIRINGNUM,
+        job_hiringNum,
       </if>
-      <if test="jobSalary != null">
-        JOB_SALARY,
+      <if test="jobApplicantnum != null">
+        job_applicantNum,
       </if>
-      <if test="jobArea != null">
-        JOB_AREA,
-      </if>
-      <if test="jobDesc != null">
-        JOB_DESC,
-      </if>
-      <if test="jobEndtime != null">
-        JOB_ENDTIME,
+      <if test="jobEnddate != null">
+        job_endDate,
       </if>
       <if test="jobState != null">
-        JOB_STATE,
+        job_state,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="companyId != null">
-        #{companyId,jdbcType=INTEGER},
-      </if>
       <if test="jobName != null">
         #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
       </if>
       <if test="jobHiringnum != null">
         #{jobHiringnum,jdbcType=INTEGER},
       </if>
-      <if test="jobSalary != null">
-        #{jobSalary,jdbcType=VARCHAR},
+      <if test="jobApplicantnum != null">
+        #{jobApplicantnum,jdbcType=INTEGER},
       </if>
-      <if test="jobArea != null">
-        #{jobArea,jdbcType=VARCHAR},
-      </if>
-      <if test="jobDesc != null">
-        #{jobDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="jobEndtime != null">
-        #{jobEndtime,jdbcType=TIMESTAMP},
+      <if test="jobEnddate != null">
+        #{jobEnddate,jdbcType=DATE},
       </if>
       <if test="jobState != null">
-        #{jobState,jdbcType=INTEGER},
+        #{jobState,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -100,44 +90,36 @@
     <!--@mbg.generated-->
     update tb_job
     <set>
-      <if test="companyId != null">
-        COMPANY_ID = #{companyId,jdbcType=INTEGER},
-      </if>
       <if test="jobName != null">
-        JOB_NAME = #{jobName,jdbcType=VARCHAR},
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
       </if>
       <if test="jobHiringnum != null">
-        JOB_HIRINGNUM = #{jobHiringnum,jdbcType=INTEGER},
+        job_hiringNum = #{jobHiringnum,jdbcType=INTEGER},
       </if>
-      <if test="jobSalary != null">
-        JOB_SALARY = #{jobSalary,jdbcType=VARCHAR},
+      <if test="jobApplicantnum != null">
+        job_applicantNum = #{jobApplicantnum,jdbcType=INTEGER},
       </if>
-      <if test="jobArea != null">
-        JOB_AREA = #{jobArea,jdbcType=VARCHAR},
-      </if>
-      <if test="jobDesc != null">
-        JOB_DESC = #{jobDesc,jdbcType=VARCHAR},
-      </if>
-      <if test="jobEndtime != null">
-        JOB_ENDTIME = #{jobEndtime,jdbcType=TIMESTAMP},
+      <if test="jobEnddate != null">
+        job_endDate = #{jobEnddate,jdbcType=DATE},
       </if>
       <if test="jobState != null">
-        JOB_STATE = #{jobState,jdbcType=INTEGER},
+        job_state = #{jobState,jdbcType=TINYINT},
       </if>
     </set>
-    where JOB_ID = #{jobId,jdbcType=INTEGER}
+    where job_id = #{jobId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.ouc.stu.model.TbJob">
     <!--@mbg.generated-->
     update tb_job
-    set COMPANY_ID = #{companyId,jdbcType=INTEGER},
-      JOB_NAME = #{jobName,jdbcType=VARCHAR},
-      JOB_HIRINGNUM = #{jobHiringnum,jdbcType=INTEGER},
-      JOB_SALARY = #{jobSalary,jdbcType=VARCHAR},
-      JOB_AREA = #{jobArea,jdbcType=VARCHAR},
-      JOB_DESC = #{jobDesc,jdbcType=VARCHAR},
-      JOB_ENDTIME = #{jobEndtime,jdbcType=TIMESTAMP},
-      JOB_STATE = #{jobState,jdbcType=INTEGER}
-    where JOB_ID = #{jobId,jdbcType=INTEGER}
+    set job_name = #{jobName,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      job_hiringNum = #{jobHiringnum,jdbcType=INTEGER},
+      job_applicantNum = #{jobApplicantnum,jdbcType=INTEGER},
+      job_endDate = #{jobEnddate,jdbcType=DATE},
+      job_state = #{jobState,jdbcType=TINYINT}
+    where job_id = #{jobId,jdbcType=INTEGER}
   </update>
 </mapper>
