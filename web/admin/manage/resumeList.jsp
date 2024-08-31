@@ -53,7 +53,7 @@
                 <td>${resume.resumeExperience}</td>
                 <td>${resume.resumeTarget}</td>
                 <td><a href="resumeView.jsp?id=${resume.resumeId}" class="tablelink">查看</a> &nbsp;&nbsp;
-                    <a href="${pageContext.request.contextPath}/ResumeManage?type=delete&id=${resume.resumeId}" class="tablelink"> 删除</a>
+                    <a href="${pageContext.request.contextPath}/ResumeManage?type=deleteResume&id=${resume.resumeId}" class="tablelink"> 删除</a>
                 </td>
             </tr>
         </jstl:forEach>

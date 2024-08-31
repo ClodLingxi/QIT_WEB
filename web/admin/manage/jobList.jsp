@@ -55,7 +55,7 @@
                 <td>${job.jobEnddate}</td>
                 <td>${job.jobState}</td>
                 <td ><a href="#" class="tablelink">修改</a> &nbsp;&nbsp;
-                    <a href="${pageContext.request.contextPath}/JobServlet?type=delete&id=${job.jobId}" class="tablelink"> 删除</a></td>
+                    <a href="${pageContext.request.contextPath}/JobServlet?type=deleteJob&id=${job.jobId}" class="tablelink"> 删除</a></td>
             </tr>
         </jstl:forEach>
 
