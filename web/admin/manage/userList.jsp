@@ -6,7 +6,12 @@
 <%
     TbUsers passport = (TbUsers) session.getAttribute("passport");
     if (passport != null && Tomcat.userManager.validate(passport) != null) {
-        request.setAttribute("userList", Tomcat.userManager.selectAllUsers());
+        String role = request.getParameter("role");
+        String selectName = request.getParameter("selectName");
+        if(role == null){
+            request.setAttribute("userList", Tomcat.userManager.selectAllUsers());
+        }
+        else request.setAttribute("userList", Tomcat.userManager.selectBySelect(role, selectName));
     }
 %>
 

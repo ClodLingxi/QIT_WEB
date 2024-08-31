@@ -44,6 +44,20 @@
         where USER_ID = #{userId,jdbcType=INTEGER}
         limit 1
     </select>
+    <select id="selectBySelect" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_users
+        where
+        <trim suffixOverrides="and">
+            <if test="userRole != null">
+                USER_ROLE = #{userRole} and
+            </if>
+            <if test="selectName != null and selectName != ''">
+                USER_REALNAME like concat('%', #{selectName}, '%')
+            </if>
+        </trim>
+    </select>
     <select id="selectAllUsers" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbUsers">
         select
         <include refid="Base_Column_List"/>

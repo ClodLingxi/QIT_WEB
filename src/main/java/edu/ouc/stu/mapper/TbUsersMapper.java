@@ -2,6 +2,7 @@ package edu.ouc.stu.mapper;
 
 import edu.ouc.stu.model.TbUsers;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -49,6 +50,15 @@ public interface TbUsersMapper {
      * @return object by primary key
      */
     TbUsers selectByPrimaryKey(Integer userId);
+
+    /**
+     * select by user search
+     * @param userRole user role
+     * @param selectName user realName
+     * @return object by user search
+     */
+    List<TbUsers> selectBySelect(@Param("userRole")String userRole, @Param("selectName") String selectName);
+
 
     /**
      * select all users

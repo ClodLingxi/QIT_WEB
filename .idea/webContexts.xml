@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/web/admin/manage/userEdit.jsp" value="file://$PROJECT_DIR$/web/admin/manage" />
+        <entry key="file://$PROJECT_DIR$/web/admin/manage/userList.jsp" value="file://$PROJECT_DIR$/web/admin/manage" />
       </map>
     </option>
   </component>
