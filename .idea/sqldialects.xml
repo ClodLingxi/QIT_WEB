@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/resources/TbApplicantMapper.xml" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/TbApplyMapper.xml" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/TbCompanyMapper.xml" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/TbJobMapper.xml" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/TbUsersMapper.xml" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/../Q_ITOffer-Javaweb-2019-05-24/SQL-code/qt_offer.sql" dialect="MySQL" />
+    <file url="PROJECT" dialect="MySQL" />
+  </component>
+</project>

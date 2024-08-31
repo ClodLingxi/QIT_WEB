@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.ouc.stu.mapper.TbJobMapper">
+  <resultMap id="BaseResultMap" type="edu.ouc.stu.model.TbJob">
+    <!--@mbg.generated-->
+    <!--@Table tb_job-->
+    <id column="JOB_ID" jdbcType="INTEGER" property="jobId" />
+    <result column="COMPANY_ID" jdbcType="INTEGER" property="companyId" />
+    <result column="JOB_NAME" jdbcType="VARCHAR" property="jobName" />
+    <result column="JOB_HIRINGNUM" jdbcType="INTEGER" property="jobHiringnum" />
+    <result column="JOB_SALARY" jdbcType="VARCHAR" property="jobSalary" />
+    <result column="JOB_AREA" jdbcType="VARCHAR" property="jobArea" />
+    <result column="JOB_DESC" jdbcType="VARCHAR" property="jobDesc" />
+    <result column="JOB_ENDTIME" jdbcType="TIMESTAMP" property="jobEndtime" />
+    <result column="JOB_STATE" jdbcType="INTEGER" property="jobState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    JOB_ID, COMPANY_ID, JOB_NAME, JOB_HIRINGNUM, JOB_SALARY, JOB_AREA, JOB_DESC, JOB_ENDTIME, 
+    JOB_STATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from tb_job
+    where JOB_ID = #{jobId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from tb_job
+    where JOB_ID = #{jobId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="JOB_ID" keyProperty="jobId" parameterType="edu.ouc.stu.model.TbJob" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_job (COMPANY_ID, JOB_NAME, JOB_HIRINGNUM, 
+      JOB_SALARY, JOB_AREA, JOB_DESC, 
+      JOB_ENDTIME, JOB_STATE)
+    values (#{companyId,jdbcType=INTEGER}, #{jobName,jdbcType=VARCHAR}, #{jobHiringnum,jdbcType=INTEGER}, 
+      #{jobSalary,jdbcType=VARCHAR}, #{jobArea,jdbcType=VARCHAR}, #{jobDesc,jdbcType=VARCHAR}, 
+      #{jobEndtime,jdbcType=TIMESTAMP}, #{jobState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="JOB_ID" keyProperty="jobId" parameterType="edu.ouc.stu.model.TbJob" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        COMPANY_ID,
+      </if>
+      <if test="jobName != null">
+        JOB_NAME,
+      </if>
+      <if test="jobHiringnum != null">
+        JOB_HIRINGNUM,
+      </if>
+      <if test="jobSalary != null">
+        JOB_SALARY,
+      </if>
+      <if test="jobArea != null">
+        JOB_AREA,
+      </if>
+      <if test="jobDesc != null">
+        JOB_DESC,
+      </if>
+      <if test="jobEndtime != null">
+        JOB_ENDTIME,
+      </if>
+      <if test="jobState != null">
+        JOB_STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobHiringnum != null">
+        #{jobHiringnum,jdbcType=INTEGER},
+      </if>
+      <if test="jobSalary != null">
+        #{jobSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="jobArea != null">
+        #{jobArea,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDesc != null">
+        #{jobDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="jobEndtime != null">
+        #{jobEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobState != null">
+        #{jobState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.ouc.stu.model.TbJob">
+    <!--@mbg.generated-->
+    update tb_job
+    <set>
+      <if test="companyId != null">
+        COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null">
+        JOB_NAME = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobHiringnum != null">
+        JOB_HIRINGNUM = #{jobHiringnum,jdbcType=INTEGER},
+      </if>
+      <if test="jobSalary != null">
+        JOB_SALARY = #{jobSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="jobArea != null">
+        JOB_AREA = #{jobArea,jdbcType=VARCHAR},
+      </if>
+      <if test="jobDesc != null">
+        JOB_DESC = #{jobDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="jobEndtime != null">
+        JOB_ENDTIME = #{jobEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobState != null">
+        JOB_STATE = #{jobState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where JOB_ID = #{jobId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.ouc.stu.model.TbJob">
+    <!--@mbg.generated-->
+    update tb_job
+    set COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      JOB_NAME = #{jobName,jdbcType=VARCHAR},
+      JOB_HIRINGNUM = #{jobHiringnum,jdbcType=INTEGER},
+      JOB_SALARY = #{jobSalary,jdbcType=VARCHAR},
+      JOB_AREA = #{jobArea,jdbcType=VARCHAR},
+      JOB_DESC = #{jobDesc,jdbcType=VARCHAR},
+      JOB_ENDTIME = #{jobEndtime,jdbcType=TIMESTAMP},
+      JOB_STATE = #{jobState,jdbcType=INTEGER}
+    where JOB_ID = #{jobId,jdbcType=INTEGER}
+  </update>
+</mapper>

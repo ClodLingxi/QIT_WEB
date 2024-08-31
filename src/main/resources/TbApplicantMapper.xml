@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.ouc.stu.mapper.TbApplicantMapper">
+    <resultMap id="BaseResultMap" type="edu.ouc.stu.model.TbApplicant">
+        <!--@mbg.generated-->
+        <!--@Table tb_applicant-->
+        <id column="APPLICANT_ID" jdbcType="INTEGER" property="applicantId"/>
+        <result column="APPLICANT_EMAIL" jdbcType="VARCHAR" property="applicantEmail"/>
+        <result column="APPLICANT_PWD" jdbcType="VARCHAR" property="applicantPwd"/>
+        <result column="APPLICANT_REGISTDATE" jdbcType="TIMESTAMP" property="applicantRegistdate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        APPLICANT_ID, APPLICANT_EMAIL, APPLICANT_PWD, APPLICANT_REGISTDATE
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from tb_applicant
+        where APPLICANT_ID = #{applicantId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from tb_applicant
+        where APPLICANT_ID = #{applicantId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="APPLICANT_ID" keyProperty="applicantId" parameterType="edu.ouc.stu.model.TbApplicant"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into tb_applicant (APPLICANT_EMAIL, APPLICANT_PWD, APPLICANT_REGISTDATE
+        )
+        values (#{applicantEmail,jdbcType=VARCHAR}, #{applicantPwd,jdbcType=VARCHAR},
+        #{applicantRegistdate,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="APPLICANT_ID" keyProperty="applicantId"
+            parameterType="edu.ouc.stu.model.TbApplicant" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into tb_applicant
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="applicantEmail != null">
+                APPLICANT_EMAIL,
+            </if>
+            <if test="applicantPwd != null">
+                APPLICANT_PWD,
+            </if>
+            <if test="applicantRegistdate != null">
+                APPLICANT_REGISTDATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="applicantEmail != null">
+                #{applicantEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="applicantPwd != null">
+                #{applicantPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="applicantRegistdate != null">
+                #{applicantRegistdate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.ouc.stu.model.TbApplicant">
+        <!--@mbg.generated-->
+        update tb_applicant
+        <set>
+            <if test="applicantEmail != null">
+                APPLICANT_EMAIL = #{applicantEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="applicantPwd != null">
+                APPLICANT_PWD = #{applicantPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="applicantRegistdate != null">
+                APPLICANT_REGISTDATE = #{applicantRegistdate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where APPLICANT_ID = #{applicantId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.ouc.stu.model.TbApplicant">
+        <!--@mbg.generated-->
+        update tb_applicant
+        set APPLICANT_EMAIL = #{applicantEmail,jdbcType=VARCHAR},
+        APPLICANT_PWD = #{applicantPwd,jdbcType=VARCHAR},
+        APPLICANT_REGISTDATE = #{applicantRegistdate,jdbcType=TIMESTAMP}
+        where APPLICANT_ID = #{applicantId,jdbcType=INTEGER}
+    </update>
+</mapper>
