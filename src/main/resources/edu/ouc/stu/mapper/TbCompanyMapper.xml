@@ -1,161 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.ouc.stu.mapper.TbCompanyMapper">
-  <resultMap id="BaseResultMap" type="edu.ouc.stu.model.TbCompany">
-    <!--@mbg.generated-->
-    <!--@Table tb_company-->
-    <id column="COMPANY_ID" jdbcType="INTEGER" property="companyId" />
-    <result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName" />
-    <result column="COMPANY_AREA" jdbcType="VARCHAR" property="companyArea" />
-    <result column="COMPANY_SIZE" jdbcType="VARCHAR" property="companySize" />
-    <result column="COMPANY_TYPE" jdbcType="VARCHAR" property="companyType" />
-    <result column="COMPANY_BRIEF" jdbcType="VARCHAR" property="companyBrief" />
-    <result column="COMPANY_STATE" jdbcType="INTEGER" property="companyState" />
-    <result column="COMPANY_SORT" jdbcType="INTEGER" property="companySort" />
-    <result column="COMPANY_VIEWNUM" jdbcType="LONGVARCHAR" property="companyViewnum" />
-    <result column="COMPANY_PIC" jdbcType="VARCHAR" property="companyPic" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    COMPANY_ID, COMPANY_NAME, COMPANY_AREA, COMPANY_SIZE, COMPANY_TYPE, COMPANY_BRIEF, 
-    COMPANY_STATE, COMPANY_SORT, COMPANY_VIEWNUM, COMPANY_PIC
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from tb_company
-    where COMPANY_ID = #{companyId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAllCompany" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbCompany">
-    select
-    <include refid="Base_Column_List"/>
-    from tb_company
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from tb_company
-    where COMPANY_ID = #{companyId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="COMPANY_ID" keyProperty="companyId" parameterType="edu.ouc.stu.model.TbCompany" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into tb_company (COMPANY_NAME, COMPANY_AREA, COMPANY_SIZE, 
-      COMPANY_TYPE, COMPANY_BRIEF, COMPANY_STATE, 
-      COMPANY_SORT, COMPANY_VIEWNUM, COMPANY_PIC
-      )
-    values (#{companyName,jdbcType=VARCHAR}, #{companyArea,jdbcType=VARCHAR}, #{companySize,jdbcType=VARCHAR}, 
-      #{companyType,jdbcType=VARCHAR}, #{companyBrief,jdbcType=VARCHAR}, #{companyState,jdbcType=INTEGER}, 
-      #{companySort,jdbcType=INTEGER}, #{companyViewnum,jdbcType=LONGVARCHAR}, #{companyPic,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" keyColumn="COMPANY_ID" keyProperty="companyId" parameterType="edu.ouc.stu.model.TbCompany" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into tb_company
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="companyName != null">
-        COMPANY_NAME,
-      </if>
-      <if test="companyArea != null">
-        COMPANY_AREA,
-      </if>
-      <if test="companySize != null">
-        COMPANY_SIZE,
-      </if>
-      <if test="companyType != null">
-        COMPANY_TYPE,
-      </if>
-      <if test="companyBrief != null">
-        COMPANY_BRIEF,
-      </if>
-      <if test="companyState != null">
-        COMPANY_STATE,
-      </if>
-      <if test="companySort != null">
-        COMPANY_SORT,
-      </if>
-      <if test="companyViewnum != null">
-        COMPANY_VIEWNUM,
-      </if>
-      <if test="companyPic != null">
-        COMPANY_PIC,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="companyName != null">
-        #{companyName,jdbcType=VARCHAR},
-      </if>
-      <if test="companyArea != null">
-        #{companyArea,jdbcType=VARCHAR},
-      </if>
-      <if test="companySize != null">
-        #{companySize,jdbcType=VARCHAR},
-      </if>
-      <if test="companyType != null">
-        #{companyType,jdbcType=VARCHAR},
-      </if>
-      <if test="companyBrief != null">
-        #{companyBrief,jdbcType=VARCHAR},
-      </if>
-      <if test="companyState != null">
-        #{companyState,jdbcType=INTEGER},
-      </if>
-      <if test="companySort != null">
-        #{companySort,jdbcType=INTEGER},
-      </if>
-      <if test="companyViewnum != null">
-        #{companyViewnum,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="companyPic != null">
-        #{companyPic,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.ouc.stu.model.TbCompany">
-    <!--@mbg.generated-->
-    update tb_company
-    <set>
-      <if test="companyName != null">
-        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
-      </if>
-      <if test="companyArea != null">
+    <resultMap id="BaseResultMap" type="edu.ouc.stu.model.TbCompany">
+        <!--@mbg.generated-->
+        <!--@Table tb_company-->
+        <id column="COMPANY_ID" jdbcType="INTEGER" property="companyId"/>
+        <result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName"/>
+        <result column="COMPANY_AREA" jdbcType="VARCHAR" property="companyArea"/>
+        <result column="COMPANY_SIZE" jdbcType="VARCHAR" property="companySize"/>
+        <result column="COMPANY_TYPE" jdbcType="VARCHAR" property="companyType"/>
+        <result column="COMPANY_BRIEF" jdbcType="VARCHAR" property="companyBrief"/>
+        <result column="COMPANY_STATE" jdbcType="INTEGER" property="companyState"/>
+        <result column="COMPANY_SORT" jdbcType="INTEGER" property="companySort"/>
+        <result column="COMPANY_VIEWNUM" jdbcType="LONGVARCHAR" property="companyViewnum"/>
+        <result column="COMPANY_PIC" jdbcType="VARCHAR" property="companyPic"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        COMPANY_ID, COMPANY_NAME, COMPANY_AREA, COMPANY_SIZE, COMPANY_TYPE, COMPANY_BRIEF,
+        COMPANY_STATE, COMPANY_SORT, COMPANY_VIEWNUM, COMPANY_PIC
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from tb_company
+        where COMPANY_ID = #{companyId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAllCompany" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbCompany">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_company
+    </select>
+    <select id="selectAllCompanyName" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbCompany">
+        select COMPANY_ID,
+               COMPANY_NAME
+        from tb_company
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from tb_company
+        where COMPANY_ID = #{companyId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="COMPANY_ID" keyProperty="companyId" parameterType="edu.ouc.stu.model.TbCompany"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into tb_company (COMPANY_NAME, COMPANY_AREA, COMPANY_SIZE,
+        COMPANY_TYPE, COMPANY_BRIEF, COMPANY_STATE,
+        COMPANY_SORT, COMPANY_VIEWNUM, COMPANY_PIC
+        )
+        values (#{companyName,jdbcType=VARCHAR}, #{companyArea,jdbcType=VARCHAR}, #{companySize,jdbcType=VARCHAR},
+        #{companyType,jdbcType=VARCHAR}, #{companyBrief,jdbcType=VARCHAR}, #{companyState,jdbcType=INTEGER},
+        #{companySort,jdbcType=INTEGER}, #{companyViewnum,jdbcType=LONGVARCHAR}, #{companyPic,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="COMPANY_ID" keyProperty="companyId"
+            parameterType="edu.ouc.stu.model.TbCompany" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into tb_company
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="companyName != null">
+                COMPANY_NAME,
+            </if>
+            <if test="companyArea != null">
+                COMPANY_AREA,
+            </if>
+            <if test="companySize != null">
+                COMPANY_SIZE,
+            </if>
+            <if test="companyType != null">
+                COMPANY_TYPE,
+            </if>
+            <if test="companyBrief != null">
+                COMPANY_BRIEF,
+            </if>
+            <if test="companyState != null">
+                COMPANY_STATE,
+            </if>
+            <if test="companySort != null">
+                COMPANY_SORT,
+            </if>
+            <if test="companyViewnum != null">
+                COMPANY_VIEWNUM,
+            </if>
+            <if test="companyPic != null">
+                COMPANY_PIC,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyArea != null">
+                #{companyArea,jdbcType=VARCHAR},
+            </if>
+            <if test="companySize != null">
+                #{companySize,jdbcType=VARCHAR},
+            </if>
+            <if test="companyType != null">
+                #{companyType,jdbcType=VARCHAR},
+            </if>
+            <if test="companyBrief != null">
+                #{companyBrief,jdbcType=VARCHAR},
+            </if>
+            <if test="companyState != null">
+                #{companyState,jdbcType=INTEGER},
+            </if>
+            <if test="companySort != null">
+                #{companySort,jdbcType=INTEGER},
+            </if>
+            <if test="companyViewnum != null">
+                #{companyViewnum,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="companyPic != null">
+                #{companyPic,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.ouc.stu.model.TbCompany">
+        <!--@mbg.generated-->
+        update tb_company
+        <set>
+            <if test="companyName != null">
+                COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyArea != null">
+                COMPANY_AREA = #{companyArea,jdbcType=VARCHAR},
+            </if>
+            <if test="companySize != null">
+                COMPANY_SIZE = #{companySize,jdbcType=VARCHAR},
+            </if>
+            <if test="companyType != null">
+                COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
+            </if>
+            <if test="companyBrief != null">
+                COMPANY_BRIEF = #{companyBrief,jdbcType=VARCHAR},
+            </if>
+            <if test="companyState != null">
+                COMPANY_STATE = #{companyState,jdbcType=INTEGER},
+            </if>
+            <if test="companySort != null">
+                COMPANY_SORT = #{companySort,jdbcType=INTEGER},
+            </if>
+            <if test="companyViewnum != null">
+                COMPANY_VIEWNUM = #{companyViewnum,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="companyPic != null">
+                COMPANY_PIC = #{companyPic,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where COMPANY_ID = #{companyId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.ouc.stu.model.TbCompany">
+        <!--@mbg.generated-->
+        update tb_company
+        set COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
         COMPANY_AREA = #{companyArea,jdbcType=VARCHAR},
-      </if>
-      <if test="companySize != null">
         COMPANY_SIZE = #{companySize,jdbcType=VARCHAR},
-      </if>
-      <if test="companyType != null">
         COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
-      </if>
-      <if test="companyBrief != null">
         COMPANY_BRIEF = #{companyBrief,jdbcType=VARCHAR},
-      </if>
-      <if test="companyState != null">
         COMPANY_STATE = #{companyState,jdbcType=INTEGER},
-      </if>
-      <if test="companySort != null">
         COMPANY_SORT = #{companySort,jdbcType=INTEGER},
-      </if>
-      <if test="companyViewnum != null">
         COMPANY_VIEWNUM = #{companyViewnum,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="companyPic != null">
-        COMPANY_PIC = #{companyPic,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where COMPANY_ID = #{companyId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="edu.ouc.stu.model.TbCompany">
-    <!--@mbg.generated-->
-    update tb_company
-    set COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
-      COMPANY_AREA = #{companyArea,jdbcType=VARCHAR},
-      COMPANY_SIZE = #{companySize,jdbcType=VARCHAR},
-      COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
-      COMPANY_BRIEF = #{companyBrief,jdbcType=VARCHAR},
-      COMPANY_STATE = #{companyState,jdbcType=INTEGER},
-      COMPANY_SORT = #{companySort,jdbcType=INTEGER},
-      COMPANY_VIEWNUM = #{companyViewnum,jdbcType=LONGVARCHAR},
-      COMPANY_PIC = #{companyPic,jdbcType=VARCHAR}
-    where COMPANY_ID = #{companyId,jdbcType=INTEGER}
-  </update>
+        COMPANY_PIC = #{companyPic,jdbcType=VARCHAR}
+        where COMPANY_ID = #{companyId,jdbcType=INTEGER}
+    </update>
 </mapper>

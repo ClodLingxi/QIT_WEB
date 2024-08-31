@@ -1,6 +1,6 @@
 package edu.ouc.stu.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Builder;

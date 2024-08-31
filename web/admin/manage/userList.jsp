@@ -11,7 +11,7 @@
         if(role == null){
             request.setAttribute("userList", Tomcat.userManager.selectAllUsers());
         }
-        else request.setAttribute("userList", Tomcat.userManager.selectBySelect(role, selectName));
+        else request.setAttribute("userList", Tomcat.userManager.selectByParam(role, selectName));
     }
 %>
 

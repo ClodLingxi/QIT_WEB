@@ -2,6 +2,7 @@ package edu.ouc.stu.mapper;
 
 import edu.ouc.stu.model.TbJob;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -38,6 +39,14 @@ public interface TbJobMapper {
      * @return object by primary key
      */
     TbJob selectByPrimaryKey(Integer jobId);
+
+    /**
+     * select by param
+     * @param companyId company id
+     * @param selectName job name
+     * @return List of Jobs
+     */
+    List<TbJob> selectByParam(@Param("companyId")String companyId, @Param("selectName") String selectName);
 
     /**
      * select all jobs

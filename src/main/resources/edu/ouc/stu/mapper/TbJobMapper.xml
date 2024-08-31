@@ -1,125 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.ouc.stu.mapper.TbJobMapper">
-  <resultMap id="BaseResultMap" type="edu.ouc.stu.model.TbJob">
-    <!--@mbg.generated-->
-    <!--@Table qit.tb_job-->
-    <id column="job_id" jdbcType="INTEGER" property="jobId" />
-    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
-    <result column="company_id" jdbcType="INTEGER" property="companyId" />
-    <result column="job_hiringNum" jdbcType="INTEGER" property="jobHiringnum" />
-    <result column="job_applicantNum" jdbcType="INTEGER" property="jobApplicantnum" />
-    <result column="job_endDate" jdbcType="DATE" property="jobEnddate" />
-    <result column="job_state" jdbcType="TINYINT" property="jobState" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    job_id, job_name, company_id, job_hiringNum, job_applicantNum, job_endDate, job_state
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from tb_job
-    where job_id = #{jobId,jdbcType=INTEGER}
-  </select>
-  <select id="selectAllJobs" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbJob">
-    select
-    <include refid="Base_Column_List"/>
-    from tb_job
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from tb_job
-    where job_id = #{jobId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="job_id" keyProperty="jobId" parameterType="edu.ouc.stu.model.TbJob" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into tb_job (job_name, company_id, job_hiringNum, 
-      job_applicantNum, job_endDate, job_state
-      )
-    values (#{jobName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{jobHiringnum,jdbcType=INTEGER}, 
-      #{jobApplicantnum,jdbcType=INTEGER}, #{jobEnddate,jdbcType=DATE}, #{jobState,jdbcType=TINYINT}
-      )
-  </insert>
-  <insert id="insertSelective" keyColumn="job_id" keyProperty="jobId" parameterType="edu.ouc.stu.model.TbJob" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into tb_job
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="jobName != null">
-        job_name,
-      </if>
-      <if test="companyId != null">
-        company_id,
-      </if>
-      <if test="jobHiringnum != null">
-        job_hiringNum,
-      </if>
-      <if test="jobApplicantnum != null">
-        job_applicantNum,
-      </if>
-      <if test="jobEnddate != null">
-        job_endDate,
-      </if>
-      <if test="jobState != null">
-        job_state,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="jobName != null">
-        #{jobName,jdbcType=VARCHAR},
-      </if>
-      <if test="companyId != null">
-        #{companyId,jdbcType=INTEGER},
-      </if>
-      <if test="jobHiringnum != null">
-        #{jobHiringnum,jdbcType=INTEGER},
-      </if>
-      <if test="jobApplicantnum != null">
-        #{jobApplicantnum,jdbcType=INTEGER},
-      </if>
-      <if test="jobEnddate != null">
-        #{jobEnddate,jdbcType=DATE},
-      </if>
-      <if test="jobState != null">
-        #{jobState,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.ouc.stu.model.TbJob">
-    <!--@mbg.generated-->
-    update tb_job
-    <set>
-      <if test="jobName != null">
-        job_name = #{jobName,jdbcType=VARCHAR},
-      </if>
-      <if test="companyId != null">
+    <resultMap id="BaseResultMap" type="edu.ouc.stu.model.TbJob">
+        <!--@mbg.generated-->
+        <!--@Table qit.tb_job-->
+        <id column="job_id" jdbcType="INTEGER" property="jobId"/>
+        <result column="job_name" jdbcType="VARCHAR" property="jobName"/>
+        <result column="company_id" jdbcType="INTEGER" property="companyId"/>
+        <result column="job_hiringNum" jdbcType="INTEGER" property="jobHiringnum"/>
+        <result column="job_applicantNum" jdbcType="INTEGER" property="jobApplicantnum"/>
+        <result column="job_endDate" jdbcType="DATE" property="jobEnddate"/>
+        <result column="job_state" jdbcType="TINYINT" property="jobState"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        job_id, job_name, company_id, job_hiringNum, job_applicantNum, job_endDate, job_state
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from tb_job
+        where job_id = #{jobId,jdbcType=INTEGER}
+    </select>
+    <select id="selectByParam" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_job
+        <trim prefix="where" suffixOverrides="and">
+            <if test='companyId != null and companyId != "0"'>
+                company_id = #{companyId} and
+            </if>
+            <if test='selectName != null and selectName != ""'>
+                job_name like concat('%', #{selectName}, '%')
+            </if>
+        </trim>
+    </select>
+    <select id="selectAllJobs" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbJob">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_job
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from tb_job
+        where job_id = #{jobId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="job_id" keyProperty="jobId" parameterType="edu.ouc.stu.model.TbJob"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into tb_job (job_name, company_id, job_hiringNum,
+        job_applicantNum, job_endDate, job_state
+        )
+        values (#{jobName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{jobHiringnum,jdbcType=INTEGER},
+        #{jobApplicantnum,jdbcType=INTEGER}, #{jobEnddate,jdbcType=DATE}, #{jobState,jdbcType=TINYINT}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="job_id" keyProperty="jobId" parameterType="edu.ouc.stu.model.TbJob"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into tb_job
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="jobName != null">
+                job_name,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="jobHiringnum != null">
+                job_hiringNum,
+            </if>
+            <if test="jobApplicantnum != null">
+                job_applicantNum,
+            </if>
+            <if test="jobEnddate != null">
+                job_endDate,
+            </if>
+            <if test="jobState != null">
+                job_state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="jobName != null">
+                #{jobName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyId != null">
+                #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="jobHiringnum != null">
+                #{jobHiringnum,jdbcType=INTEGER},
+            </if>
+            <if test="jobApplicantnum != null">
+                #{jobApplicantnum,jdbcType=INTEGER},
+            </if>
+            <if test="jobEnddate != null">
+                #{jobEnddate,jdbcType=DATE},
+            </if>
+            <if test="jobState != null">
+                #{jobState,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.ouc.stu.model.TbJob">
+        <!--@mbg.generated-->
+        update tb_job
+        <set>
+            <if test="jobName != null">
+                job_name = #{jobName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId,jdbcType=INTEGER},
+            </if>
+            <if test="jobHiringnum != null">
+                job_hiringNum = #{jobHiringnum,jdbcType=INTEGER},
+            </if>
+            <if test="jobApplicantnum != null">
+                job_applicantNum = #{jobApplicantnum,jdbcType=INTEGER},
+            </if>
+            <if test="jobEnddate != null">
+                job_endDate = #{jobEnddate,jdbcType=DATE},
+            </if>
+            <if test="jobState != null">
+                job_state = #{jobState,jdbcType=TINYINT},
+            </if>
+        </set>
+        where job_id = #{jobId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.ouc.stu.model.TbJob">
+        <!--@mbg.generated-->
+        update tb_job
+        set job_name = #{jobName,jdbcType=VARCHAR},
         company_id = #{companyId,jdbcType=INTEGER},
-      </if>
-      <if test="jobHiringnum != null">
         job_hiringNum = #{jobHiringnum,jdbcType=INTEGER},
-      </if>
-      <if test="jobApplicantnum != null">
         job_applicantNum = #{jobApplicantnum,jdbcType=INTEGER},
-      </if>
-      <if test="jobEnddate != null">
         job_endDate = #{jobEnddate,jdbcType=DATE},
-      </if>
-      <if test="jobState != null">
-        job_state = #{jobState,jdbcType=TINYINT},
-      </if>
-    </set>
-    where job_id = #{jobId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="edu.ouc.stu.model.TbJob">
-    <!--@mbg.generated-->
-    update tb_job
-    set job_name = #{jobName,jdbcType=VARCHAR},
-      company_id = #{companyId,jdbcType=INTEGER},
-      job_hiringNum = #{jobHiringnum,jdbcType=INTEGER},
-      job_applicantNum = #{jobApplicantnum,jdbcType=INTEGER},
-      job_endDate = #{jobEnddate,jdbcType=DATE},
-      job_state = #{jobState,jdbcType=TINYINT}
-    where job_id = #{jobId,jdbcType=INTEGER}
-  </update>
+        job_state = #{jobState,jdbcType=TINYINT}
+        where job_id = #{jobId,jdbcType=INTEGER}
+    </update>
 </mapper>

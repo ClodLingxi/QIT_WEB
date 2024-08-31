@@ -57,7 +57,7 @@ public interface TbUsersMapper {
      * @param selectName user realName
      * @return object by user search
      */
-    List<TbUsers> selectBySelect(@Param("userRole")String userRole, @Param("selectName") String selectName);
+    List<TbUsers> selectByParam(@Param("userRole")String userRole, @Param("selectName") String selectName);
 
 
     /**

@@ -44,6 +44,13 @@ public interface TbCompanyMapper {
     List<TbCompany> selectAllCompany();
 
     /**
+     * select all company id and name
+     *
+     * @return List of Company id and name
+     */
+    List<TbCompany> selectAllCompanyName();
+
+    /**
      * update record selective
      * @param record the updated record
      * @return update count

@@ -6,7 +6,10 @@
 <%
     TbUsers passport = (TbUsers) session.getAttribute("passport");
     if (passport != null && Tomcat.userManager.validate(passport) != null) {
-        request.setAttribute("jobList", Tomcat.jobMapper.selectAllJobs());
+        String id = request.getParameter("id");
+        String selectName = request.getParameter("selectName");
+        if (id == null) request.setAttribute("jobList", Tomcat.jobMapper.selectAllJobs());
+        else request.setAttribute("jobList", Tomcat.jobMapper.selectByParam(id, selectName));
     }
 %>
 
@@ -30,7 +33,7 @@
             <li class="click"><span><img src="../images/t01.png"/></span>
                 <a href="jobAdd.html">添加</a></li>
         </ul>
-        <iframe src="jobSearch.html" scrolling="no" frameborder="0" width="630" height="42"></iframe>
+        <iframe src="jobSearch.jsp" scrolling="no" frameborder="0" width="630" height="42"></iframe>
     </div>
     <table class="imgtable">
         <thead>
