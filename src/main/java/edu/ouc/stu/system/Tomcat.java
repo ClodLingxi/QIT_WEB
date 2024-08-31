@@ -1,5 +1,6 @@
 package edu.ouc.stu.system;
 
+import edu.ouc.stu.mapper.TbCompanyMapper;
 import edu.ouc.stu.mapper.TbJobMapper;
 import edu.ouc.stu.mapper.TbUsersMapper;
 import jakarta.servlet.ServletContextEvent;
@@ -20,7 +21,7 @@ public class Tomcat implements ServletContextListener {
 
     public static TbUsersMapper userManager;
     public static TbJobMapper jobMapper;
-
+    public static TbCompanyMapper companyMapper;
 
     @SneakyThrows
     public void contextInitialized(ServletContextEvent sce) {
@@ -30,6 +31,7 @@ public class Tomcat implements ServletContextListener {
 
         userManager = sqlSession.getMapper(TbUsersMapper.class);
         jobMapper = sqlSession.getMapper(TbJobMapper.class);
+        companyMapper = sqlSession.getMapper(TbCompanyMapper.class);
     }
 
     public void contextDestroyed(ServletContextEvent sce) {

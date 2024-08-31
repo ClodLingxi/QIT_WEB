@@ -27,6 +27,11 @@
     from tb_company
     where COMPANY_ID = #{companyId,jdbcType=INTEGER}
   </select>
+  <select id="selectAllCompany" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbCompany">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_company
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
     delete from tb_company

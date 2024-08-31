@@ -50,7 +50,7 @@
     <div class="usual">
         <%--  <form name="frm" action="${pageContext.request.contextPath}/CompanyServlet?type=add" method="post" --%>
         <%--        enctype="multipart/form-data" onsubmit="return validate();">--%>
-        <form name="frm" action="../../CompanyServlet?type=add" method="post"
+            <form name="frm" action="${pageContext.request.contextPath}/CompanyManage?type=addCompany" method="post">
               onsubmit="return validate();">
             <div class="tabson">
                 <ul class="forminfo">

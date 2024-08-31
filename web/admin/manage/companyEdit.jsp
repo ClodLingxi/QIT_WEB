@@ -1,15 +1,19 @@
+<%@ page import="edu.ouc.stu.model.TbUsers" %>
+<%@ page import="edu.ouc.stu.system.Tomcat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ page import="com.lingxi.dataform.Passport" %>
-<%@ page import="com.lingxi.dataform.CompanyData" %>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    Passport passport = (Passport) session.getAttribute("passport");
-    int id = Integer.parseInt(request.getParameter("id"));
-    if (passport != null && id >= 0) {
-        request.setAttribute("company", CompanyData.getCompany(passport, id));
-    } else {
+    TbUsers passport = (TbUsers) session.getAttribute("passport");
+    String temp = request.getParameter("id");
+    if(temp == null){
+        response.sendRedirect("companyEdit.jsp");
+        return;
+    }
+    int id = Integer.parseInt(temp);
 
+    if (passport != null && id > 0 && Tomcat.userManager.validate(passport) != null) {
+        request.setAttribute("company", Tomcat.companyMapper.selectByPrimaryKey(id));
     }
 %>
 
@@ -60,7 +64,7 @@
 </div>
 <div class="formbody">
     <div class="usual">
-        <form name="frm" action="${pageContext.request.contextPath}/CompanyServlet?type=update&id=${company.id}" method="post"
+        <form name="frm" action="${pageContext.request.contextPath}/CompanyManage?type=updateCompany&id=${company.companyId}" method="post"
                onsubmit="return validate();">
 <%--        <form name="frm" action="${pageContext.request.contextPath}/CompanyServlet?type=update&id=${company.id}" method="post"--%>
 <%--              enctype="multipart/form-data" onsubmit="return validate();">--%>
@@ -69,45 +73,45 @@
                     <li>
                         <label>企业名称<b>*</b></label>
                         <input name="companyName" type="text" id="companyName" class="dfinput" style="width:518px;"
-                               value="${company.name}"/>
+                               value="${company.companyName}"/>
                     </li>
                     <li>
                         <label>企业所在地<b>*</b></label>
                         <input name="companyArea" type="text" id="companyArea" class="dfinput" style="width:518px;"
-                               value="${company.address}"/>
+                               value="${company.companyArea}"/>
                     </li>
                     <li>
                         <label>企业规模<b>*</b></label>
                         <input name="companySize" type="text" id="companySize" class="dfinput" style="width:518px;"
-                               value="${company.scale}"/>
+                               value="${company.companySize}"/>
                     </li>
                     <li>
                         <label>企业性质<b>*</b></label>
                         <input name="companyType" type="text" id="companyType" class="dfinput" style="width:518px;"
-                               value="${company.type}"/>
+                               value="${company.companyType}"/>
                     </li>
                     <li>
                         <p>企业简介&nbsp;(不超过1000字)</p>
                         <textarea class="ckeditor" cols="50" id="companyBrief" name="companyBrief"
-                                  rows="10">${company.introduction}</textarea>
+                                  rows="10">${company.companyBrief}</textarea>
                     </li>
                     <li>
                         <label>企业招聘状态</label>
                         <div class="vocation">
                             <select name="companyState" class="select3">
-                                <jstl:set var="state" value="${company.state}"/>
-                                <option value="0" <jstl:if test="${state.ordinal() == 0}">selected</jstl:if>>招聘中
+                                <jstl:set var="state" value="${company.companyState}"/>
+                                <option value="0" <jstl:if test="${state == 1}">selected</jstl:if>>招聘中
                                 </option>
-                                <option value="1" <jstl:if test="${state.ordinal() == 1}">selected</jstl:if>>已暂停
+                                <option value="1" <jstl:if test="${state == 2}">selected</jstl:if>>已暂停
                                 </option>
-                                <option value="2" <jstl:if test="${state.ordinal() == 2}">selected</jstl:if>>已结束
+                                <option value="2" <jstl:if test="${state == 3}">selected</jstl:if>>已结束
                                 </option>
                             </select>
                         </div>
                     </li>
                     <li>
                         <label>显示排序<b></b></label>
-                        <input name="companySort" type="text" class="dfinput" style="width:100px;" value="${company.order}"/>
+                        <input name="companySort" type="text" class="dfinput" style="width:100px;" value="${company.companySort}"/>
                     </li>
                     <li>
                         <label>宣传图片<b>*</b></label>

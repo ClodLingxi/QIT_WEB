@@ -1,7 +1,10 @@
 package edu.ouc.stu.mapper;
 
 import edu.ouc.stu.model.TbCompany;
+import edu.ouc.stu.model.TbJob;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface TbCompanyMapper {
@@ -32,6 +35,13 @@ public interface TbCompanyMapper {
      * @return object by primary key
      */
     TbCompany selectByPrimaryKey(Integer companyId);
+
+    /**
+     * select all company
+     *
+     * @return List of Company
+     */
+    List<TbCompany> selectAllCompany();
 
     /**
      * update record selective

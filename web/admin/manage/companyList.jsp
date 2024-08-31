@@ -1,14 +1,12 @@
-<%@ page import="com.lingxi.dataform.Passport" %>
-<%@ page import="com.lingxi.dataform.CompanyData" %>
+<%@ page import="edu.ouc.stu.model.TbUsers" %>
+<%@ page import="edu.ouc.stu.system.Tomcat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    Passport passport = (Passport) session.getAttribute("passport");
-    if (passport != null) {
-        request.setAttribute("CompanyList", CompanyData.getCompanyList(passport));
-    } else {
-
+    TbUsers passport = (TbUsers) session.getAttribute("passport");
+    if (passport != null && Tomcat.userManager.validate(passport) != null) {
+        request.setAttribute("companyList", Tomcat.companyMapper.selectAllCompany());
     }
 %>
 
@@ -49,18 +47,18 @@
         </thead>
         <tbody>
 
-        <jstl:forEach items="${CompanyList}" var="company">
+        <jstl:forEach items="${companyList}" var="company">
             <tr height="50px">
                 <td ><input name="" type="checkbox" value="" /></td>
-                <td>${company.name}</td>
-                <td>${company.address}</td>
-                <td>${company.scale}</td>
-                <td>${company.type}</td>
-                <td>${company.state.toString()}</td>
-                <td>${company.order}</td>
-                <td>${company.views}</td>
-                <td ><a href="companyEdit.jsp?id=${company.id}" class="tablelink">修改</a> &nbsp;&nbsp;
-                    <a href="${pageContext.request.contextPath}/CompanyServlet?type=delete&id=${company.id}" class="tablelink"> 删除</a>
+                <td>${company.companyName}</td>
+                <td>${company.companyArea}</td>
+                <td>${company.companySize}</td>
+                <td>${company.companyType}</td>
+                <td>${company.companyState}</td>
+                <td>${company.companySort}</td>
+                <td>${company.companyViewnum}</td>
+                <td ><a href="./companyEdit.jsp?id=${company.companyId}" class="tablelink">修改</a> &nbsp;&nbsp;
+                    <a href="${pageContext.request.contextPath}/CompanyManage?type=deleteCompany&id=${company.companyId}" class="tablelink"> 删除</a>
                 </td>
             </tr>
         </jstl:forEach>
