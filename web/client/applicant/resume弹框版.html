@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>我的简历 - 锐聘网</title>
+<link href="../css/base.css" type="text/css" rel="stylesheet" />
+<link href="../css/resume.css" type="text/css" rel="stylesheet" />
+<meta
+	content="大学生求职,大学生就业,大学生招聘,IT人才,IT人才招聘,大学生名企招聘,,大学生找工作,IT名企招聘，IT行业招聘，IT企业快速入职"
+	name="keywords">
+<meta
+	content="锐聘专注于为企业提供高效的人力资源解决方案，同时面向IT类技术人才推出快速一站式免费就业服务。秉承QST青软实训人才服务理念，为数千家企业量身定做个性化、全程化的人才培养体系，同时帮助中高级人才铺设成功之路，为人才和企业架设起沟通之桥。"
+	name="description">
+</head>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/ajaxfileupload.js"></script>
+<script type="text/javascript">
+	//全局变量，接收栏目模板所需数据
+	var _url = '';
+	var _size = 0;
+	$(document).ready(function() {
+		//btn_upload按钮id表示
+		$('#btn_upload').click(function() {
+			//取出上传文件的名字
+			var filename = $('#img_url').val();
+			//判断文件格式
+			if (!filename.match(/\.(jpg|jpeg|gif|bmp|png)(\s|\?|$)/i)) {
+				//upload_ok在哪输出的？
+				$("#upload_ok").html('只能上传jpg、png、gif文件。');
+				return false;
+			}
+			//上传文件进AjaxUploadPivServlet
+			$.ajaxFileUpload({
+				url : "/ITOffer/AjaxUploadPivServlet",
+				secureuri : false,
+				cache : false,
+				fileElementId : 'img_url',
+				dataType : "json",
+				error : function(rs, status, e) {
+					return false;
+				},
+				success : function(rs, status) {
+					if (rs.status == "SUCCESS") {
+						//将拼接好的路径写进隐藏表单中
+						alert("头像修改成功");
+						$("#ad_logo").val(rs.url);
+						$("#devImgShow").attr("src", rs.url);
+						_url = rs.url;
+					} else {
+						_url = '';
+						alert(rs.err);
+					}
+				}
+			});
+		});
+		getApplicantInfo();
+	});
+	function getApplicantInfo(){
+		fajax("/ITOffer/ResumeBasicinfoServlet",null,function(data){
+			$("#realName").html(data.data.realName);
+			$("#gender").html(data.data.gender);
+			$("#strbirthday").html(data.data.strbirthday);
+			$("#currentLoc").html(data.data.currentLoc);
+			$("#residentLoc").html(data.data.residentLoc);
+			$("#telephone").html(data.data.telephone);
+			$("#email").html(data.data.email);
+			$("#jobIntension").html(data.data.jobIntension);
+			$("#jobExperience").html(data.data.jobExperience);
+			$("#devImgShow").attr('src',data.data.headShot);
+		})
+	}
+	function show_pic() {
+		$("#devImgShow").attr('src',
+				window.URL.createObjectURL($('#img_url')[0].files[0]));
+	}
+	/**/
+	$(function(){
+		alert(111)
+		$("#butAdd").click(function(){
+			alert(222)
+			let add1 = $("#addD1")
+			console.log(add1);
+			alert(add1)
+			add1[0].showModal();
+		});
+		$("#closeBut").click(function(){
+			$("#addD1")[0].close();
+		})
+		$("#addBut2").click(function(){
+			alert("addD2")
+			$("#addD2")[0].showModal();
+		});
+	});
+	/**/
+</script>
+<body>
+	<!-- 网站公共头部 -->
+	<div class="head">
+		<div class="head_area">
+			<div class="head_nav">
+				<ul>
+					<li><img src="../images/nav_inc1.png" /><a href="../index.html">首页</a></li>
+					<li><img src="../images/nav_inc2.png" /><a href="#">成功案例</a></li>
+					<li><img src="../images/nav_inc3.png" /><a href="#">关于锐聘</a></li>
+				</ul>
+			</div>
+			<div class="head_logo">
+				<img src="../images/head_logo.png" />
+			</div>
+			<div class="head_user">
+				<a href="../login.html" target="_parent"><span class="type1">登录</span></a>
+				<a href="../register.html" target="_parent"><span class="type2">注册</span></a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="top_main">
+		<div class="top_logo">
+			<img src="../images/main_logo.png" />
+		</div>
+		<div class="top_instr">提供岗前培训的IT职位</div>
+		<div class="top_tel">
+			<img src="../images/it-phone.png" />
+		</div>
+	</div>
+	<div class="clear"></div>
+
+	<!-- 我的简历页面开始 -->
+	<div class="resume_con">
+		<!--tab设置-->
+		<div class="user_operate">
+			<ul style="float: left">
+				<li><a href="ResumeBasicinfoServlet?type=select">我的简历</a></li>
+				<!-- <li class="tn-tabs-selected"><a
+					href="JobApplyServlet?type=myapply">我的申请</a></li> -->
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<!--主体部分-->
+		<div class="resume_main">
+			<!--左边-->
+			<div class="resume_left">
+				<div class="resume_title">
+					<div style="float: left">基本信息</div>
+				</div>
+				<div class="all_resume">
+					<div class="table_style">
+						<table width="300" border="0" cellpadding="3" cellspacing="1"
+							bgcolor="#EEEEEE">
+							<tr>
+								<td width="110" align="right" bgcolor="#F8F8F8"
+									style="color: gray;">姓名：</td>
+								<td bgcolor="#F8F8F8" id="realName"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+						<table width="300" border="0" cellpadding="3" cellspacing="1"
+							bgcolor="#EEEEEE">
+							<tr>
+								<td width="110" align="right" bgcolor="#F8F8F8"
+									style="color: gray;">性别：</td>
+								<td bgcolor="#F8F8F8" id="gender"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+						<table width="300" border="0" cellpadding="3" cellspacing="1"
+							bgcolor="#EEEEEE">
+							<tr>
+								<td width="110" align="right" bgcolor="#F8F8F8"
+									style="color: gray;" >出生日期：</td>
+								<td bgcolor="#F8F8F8" id="strbirthday"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+						<table width="300" border="0" cellpadding="3" cellspacing="1"
+							bgcolor="#EEEEEE">
+							<tr>
+								<td width="110" align="right" bgcolor="#F8F8F8"
+									style="color: gray;">当前所在地：</td>
+								<td bgcolor="#F8F8F8" id="currentLoc"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+						<table width="300" border="0" cellpadding="3" cellspacing="1"
+							bgcolor="#EEEEEE">
+							<tr>
+								<td width="110" align="right" bgcolor="#F8F8F8"
+									style="color: gray;">户口所在地：</td>
+								<td bgcolor="#F8F8F8" id="residentLoc"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+
+						<table width="300" border="0" cellpadding="3" cellspacing="1"
+							bgcolor="#EEEEEE">
+							<tr>
+								<td width="110" align="right" bgcolor="#F8F8F8"
+									style="color: gray;">手机：</td>
+								<td bgcolor="#F8F8F8" id="telephone"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+						<table width="300" border="0" cellpadding="3" cellspacing="1"
+							bgcolor="#EEEEEE">
+							<tr>
+								<td width="110" align="right" bgcolor="#F8F8F8"
+									style="color: gray;">邮件：</td>
+								<td bgcolor="#F8F8F8" id="email"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+						<table width="300" border="0" cellpadding="3" cellspacing="1"
+							bgcolor="#EEEEEE">
+							<tr>
+								<td width="110" align="right" bgcolor="#F8F8F8"
+									style="color: gray;" >求职意向：</td>
+								<td bgcolor="#F8F8F8" id="jobIntension"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+						<table width="300" border="0" cellpadding="3" cellspacing="1"
+							bgcolor="#EEEEEE">
+							<tr>
+								<td width="110" align="right" bgcolor="#F8F8F8"
+									style="color: gray;">工作经验：</td>
+								<td bgcolor="#F8F8F8" id="jobExperience"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+					</div>
+					<div style="float: right" class="uploade">
+						<img src="../images/anonymous.png" id="devImgShow"
+							onclick="$('#img_url').click()" width="140" height="140"> <input
+							type="file" name="img_url" onchange="show_pic()" id="img_url"
+							style="display: none;" /> <input type="hidden" name="ad_logo"
+							id="ad_logo" value="" />
+						<!-- <img src="" width="140" height="140"> -->
+						<p>&nbsp;</p>
+						<div align="center">
+							<a href="javascript:void(0)" class="uploade_btn" id="btn_upload">更换照片</a>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="resume_title">
+					<div style="float: left">教育经历</div>
+					<div class="btn">添加</div>
+				</div>
+				<div class="it-table-grid">
+					<ul>
+						<li class="tn-border-gray tn-border-bottom it-table-grid-header">
+							<p class="tn-name">毕业院校</p>
+							<p class="tn-date">就读时间</p>
+							<p class="tn-degree">学历</p>
+							<p class="tn-fieldofstudy">专业</p>
+						</li>
+					</ul>
+				</div>
+				<div class="resume_title">
+					<div style="float: left">项目经验</div>
+					<div class="btn">添加</div>
+				</div>
+				<div class="it-table-grid">
+					<ul>
+						<li class="tn-border-gray tn-border-bottom it-table-grid-header">
+							<p class="tn-name">项目名称</p>
+							<p class="tn-date">参与时间</p>
+							<p class="tn-degree">担任职位</p>
+						</li>
+					</ul>
+				</div>
+				<div class="resume_title">
+					<div style="float: left">简历附件</div>
+					<div class="btn">添加</div>
+				</div>
+				<div class="it-table-grid">
+					<div class="it-table-grid">暂无附件！</div>
+				</div>
+			</div>
+			<!-- 右侧公共部分：简历完善度 -->
+			<iframe src="resume_right.html" width="297" height="440"
+				scrolling="no" frameborder="0"></iframe>
+			<div style="clear: both"></div>
+		</div>
+	</div>
+	<!-- 我的简历页面结束 -->
+	<hr/>
+	<!-- 给dialog 和主体内容添加一个 data-flag 属性，用来实现事件委托 -->
+	<dialog id="addD2" class="dialog-component">
+		<!-- 添加一层容器便于后续实现点击遮罩层关闭 -->
+		<div class="dialog-main">
+			<!-- 标题栏区域 -->
+			<div class="dialog-header"><span class="dialog-title">这是对话框标题</span></div>
+			<!-- 右上角的关闭按钮 -->
+			<span class="dialog-close-btn">X</span>
+			<!-- 对话框的中间主要的内容区域 -->
+			<div class="dialog-container">
+				<div class="all_resume">
+					<div class="table_style">
+						<table width="300" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
+							<tr>
+								<th width="110" align="right" bgcolor="#F8F8F8">学校名称：</th>
+								<td bgcolor="#F8F8F8"><input type="text" name="" value="冯娟娟"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+						<table width="300" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
+							<tr>
+								<th width="110" align="right" bgcolor="#F8F8F8">就读时间：</th>
+								<td bgcolor="#F8F8F8"><input type="text" name="" value="2005-09-09"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+						<table width="300" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
+							<tr>
+								<th width="110" align="right" bgcolor="#F8F8F8">学历：</th>
+								<td bgcolor="#F8F8F8"><input type="text" name="" value="13333333333333"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+						<table width="300" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
+							<tr>
+								<th width="110" align="right" bgcolor="#F8F8F8">专业：</th>
+								<td bgcolor="#F8F8F8"><input type="text" name="" value="test@test.com"></td>
+							</tr>
+						</table>
+						<div class="he"></div>
+						<div style="margin-left:100px;"><input name="" type="text" class="save1" value="保存">
+							<input name="" type="text" class="cancel2" value="取消"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+			</div>
+			<!-- 底部显示按钮的区域 -->
+			<!--<div class="dialog-footer">
+				<button>取消</button>
+				<button>确认</button>
+			</div>-->
+		</div>
+	</dialog>
+	<button id="addBut2">添加学历</button>
+	<hr/>
+	<!-- 网站公共尾部 -->
+	<iframe src="../foot.html" width="100%" height="150" scrolling="no"
+		frameborder="0"></iframe>
+</body>
+<style>
+	.dialog-component {
+		border: none;
+		padding: 0;
+		border-radius: 5px;
+		/*margin: 0 auto;*/
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	/* 通过::backdrop 伪元素定义遮罩层的样式，一般设置背景颜色 */
+	.dialog-component::backdrop {
+		background-color: rgba(0, 0, 0, 0.7);
+	}
+
+	.dialog-main {
+		width: 380px;
+		position: relative;
+	}
+
+	/* 标题栏 */
+	.dialog-header {
+		padding: 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 14px;
+		border-bottom: 1px solid #dedede;
+	}
+	.dialog-title {
+		font-weight: bold;
+	}
+
+	/* 右上角关闭按钮 */
+	.dialog-close-btn {
+		font-size: 14px;
+		position: absolute;
+		display: inline-block;
+		right: 5px;
+		width: auto;
+		height: auto;
+		top: 6px;
+		padding: 5px;
+	}
+
+	/* 主体内容 */
+	.dialog-container {
+		padding: 15px 10px;
+		font-size: 14px;
+	}
+
+	/* 底部按钮 */
+	.dialog-footer {
+		padding: 10px;
+		text-align: right;
+		border-top: 1px solid #dedede;
+	}
+</style>
+</html>
