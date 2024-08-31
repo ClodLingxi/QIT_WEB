@@ -100,7 +100,7 @@ body {
 	<div class="login_content">
 		<div class="login_name">
 			<h3>用户登录</h3>
-			<form action="${pageContext.request.contextPath}/UserServlet?type=login" method="post" onsubmit="return validate();">
+			<form action="${pageContext.request.contextPath}/UserServlet?role=admin" method="post" onsubmit="return validate();">
 				<div>
 					用户名：<input name="userLogname" id="userLogname" type="text"
 						class="login_input" />
@@ -118,8 +118,9 @@ body {
 					<input type="submit" class="login_button" value="登&nbsp;&nbsp;录"></input>
                 </div>
                 <div align="center">
-                    <font style="color: red;">${requestScope.msg}</font>
+                    <font style="color: red;">${sessionScope.msg}</font>
                     </div>
+				</div>
 			</form>
 		</div>
     </div>

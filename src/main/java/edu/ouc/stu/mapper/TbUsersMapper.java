@@ -7,6 +7,20 @@ import org.apache.ibatis.annotations.Mapper;
 public interface TbUsersMapper {
 
     /**
+     * validate by username, password and role
+     * @param tbUsers data source
+     * @return userID
+     */
+    Object validate(TbUsers tbUsers);
+
+    /**
+     * query state by id
+     * @param userId primaryKey
+     * @return state
+     */
+    int isEnable(Integer userId);
+
+    /**
      * delete by primary key
      * @param userId primaryKey
      * @return deleteCount
