@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -32,26 +35,26 @@ $(function(){
     <div class="title"> <span><img src="../images/leftico01.png" /></span>企业职位管理</div>
     <ul class="menuson">
       <li><cite></cite><a href="jobApplyList.html" target="rightFrame">职位申请查看</a><i></i></li>
-      <li><cite></cite><a href="jobList.html" target="rightFrame">职位管理</a><i></i></li>
-      <li><cite></cite><a href="companyList.html" target="rightFrame">企业管理</a><i></i></li>
+      <li><cite></cite><a href="jobList.jsp" target="rightFrame">职位管理</a><i></i></li>
+      <li><cite></cite><a href="companyList.jsp" target="rightFrame">企业管理</a><i></i></li>
     </ul>
   </dd>
   <dd>
     <div class="title"> <span><img src="../images/leftico02.png" /></span>简历管理</div>
     <ul class="menuson">
-      <li><cite></cite><a href="resumeList.html" target="rightFrame">简历查询</a><i></i></li>
+      <li><cite></cite><a href="resumeList.jsp" target="rightFrame">简历查询</a><i></i></li>
     </ul>
   </dd>
   <dd>
     <div class="title"><span><img src="../images/leftico03.png"/></span>用户管理</div>
   	<ul class="menuson">
-      <li><cite></cite><a href="userList.html" target="rightFrame">用户管理</a><i></i></li>
+      <li><cite></cite><a href="userList.jsp" target="rightFrame">用户管理</a><i></i></li>
     </ul>
   </dd>
   <dd>
     <div class="title"><span><img src="../images/leftico04.png" /></span>系统管理</div>
     <ul class="menuson">
-      <li><cite></cite><a href="userOnline.html" target="rightFrame">在线用户</a><i></i></li>
+      <li><cite></cite><a href="userOnline.jsp" target="rightFrame">在线用户</a><i></i></li>
     </ul>
   </dd>
   <dd>

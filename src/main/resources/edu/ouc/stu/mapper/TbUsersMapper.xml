@@ -42,6 +42,12 @@
         <include refid="Base_Column_List"/>
         from tb_users
         where USER_ID = #{userId,jdbcType=INTEGER}
+        limit 1
+    </select>
+    <select id="selectAllUsers" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbUsers">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_users
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from tb_users

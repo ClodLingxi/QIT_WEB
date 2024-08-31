@@ -3,6 +3,8 @@ package edu.ouc.stu.mapper;
 import edu.ouc.stu.model.TbUsers;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface TbUsersMapper {
 
@@ -47,6 +49,8 @@ public interface TbUsersMapper {
      * @return object by primary key
      */
     TbUsers selectByPrimaryKey(Integer userId);
+
+    List<TbUsers> selectAllUsers();
 
     /**
      * update record selective

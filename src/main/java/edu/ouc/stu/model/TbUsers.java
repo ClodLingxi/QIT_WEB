@@ -1,8 +1,13 @@
 package edu.ouc.stu.model;
 
-import lombok.Data;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.*;
 
-@Data
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+
 public class TbUsers {
     public enum Role{
         none,
@@ -51,4 +56,26 @@ public class TbUsers {
         }
         return null;
     }
+
+    public static TbUsers getInstance(HttpServletRequest req, int userId) {
+        TbUsers tbUsers = getInstance(req);
+        if (tbUsers != null) {
+            tbUsers.setUserId(userId);
+        }
+        return tbUsers;
+    }
+
+    public static TbUsers getInstance(HttpServletRequest req) {
+        String userName = req.getParameter("userLogname");
+        String userPwd = req.getParameter("userPwd");
+        String userRealname = req.getParameter("userRealname");
+        String userEmail = req.getParameter("userEmail");
+        String userRole = req.getParameter("userRole");
+        String userState = req.getParameter("userState");
+        if (userName != null && userPwd != null && userRealname != null && userEmail != null
+                && userRole != null && userState != null) {
+            return new TbUsers(-1, userName, userPwd, userRealname, userEmail, Integer.parseInt(userRole), Integer.parseInt(userState));
+        } return null;
+    }
+
 }
