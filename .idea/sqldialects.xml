@@ -2,7 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/resources/edu/ouc/stu/mapper/TbApplicantMapper.xml" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/edu/ouc/stu/mapper/TbApplyMapper.xml" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/edu/ouc/stu/mapper/TbCompanyMapper.xml" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/edu/ouc/stu/mapper/TbUsersMapper.xml" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/../Q_ITOffer-Javaweb-2019-05-24/SQL-code/qt_offer.sql" dialect="MySQL" />

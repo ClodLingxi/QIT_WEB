@@ -13,7 +13,7 @@ body {
 	background: #053364;
 }
 .login_content {
-	background: url(images/login.png) no-repeat;
+	background: url(/admin/images/login.png) no-repeat;
 	width: 737px;
 	height: 396px;
 	margin: 150px auto 0px;

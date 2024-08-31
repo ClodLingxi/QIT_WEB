@@ -36,6 +36,7 @@
             </entry>
           </map>
         </option>
+        <option name="mybatisPlusIdType" value="AUTO" />
         <option name="p3CComment" value="true" />
         <option name="tableGenerateConfigs">
           <map>
@@ -81,6 +82,19 @@
                   <option name="javaModelName" value="TbJob" />
                   <option name="moduleName" value="QIT" />
                   <option name="mybatisplusIdType" value="INPUT" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="qit:tb_resume">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="resume_id" />
+                  <option name="javaModelName" value="TbResume" />
+                  <option name="moduleName" value="QIT" />
+                  <option name="mybatisplusIdType" value="AUTO" />
                   <option name="sequenceColumn" value="" />
                   <option name="sequenceId" value="" />
                   <option name="useActualColumnName" value="false" />

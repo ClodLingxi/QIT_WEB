@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.ouc.stu.mapper.TbResumeMapper">
+  <resultMap id="BaseResultMap" type="edu.ouc.stu.model.TbResume">
+    <!--@mbg.generated-->
+    <!--@Table qit.tb_resume-->
+    <id column="resume_id" jdbcType="INTEGER" property="resumeId" />
+    <result column="resume_name" jdbcType="VARCHAR" property="resumeName" />
+    <result column="resume_picture" jdbcType="VARCHAR" property="resumePicture" />
+    <result column="resume_gender" jdbcType="VARCHAR" property="resumeGender" />
+    <result column="resume_birthday" jdbcType="DATE" property="resumeBirthday" />
+    <result column="resume_location" jdbcType="VARCHAR" property="resumeLocation" />
+    <result column="resume_registration" jdbcType="VARCHAR" property="resumeRegistration" />
+    <result column="resume_phone" jdbcType="VARCHAR" property="resumePhone" />
+    <result column="resume_email" jdbcType="VARCHAR" property="resumeEmail" />
+    <result column="resume_target" jdbcType="VARCHAR" property="resumeTarget" />
+    <result column="resume_experience" jdbcType="VARCHAR" property="resumeExperience" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    resume_id, resume_name, resume_picture, resume_gender, resume_birthday, resume_location, 
+    resume_registration, resume_phone, resume_email, resume_target, resume_experience
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from tb_resume
+    where resume_id = #{resumeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllResumes" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbResume">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_resume
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from tb_resume
+    where resume_id = #{resumeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="resume_id" keyProperty="resumeId" parameterType="edu.ouc.stu.model.TbResume" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_resume (resume_name, resume_picture, resume_gender, 
+      resume_birthday, resume_location, resume_registration, 
+      resume_phone, resume_email, resume_target, 
+      resume_experience)
+    values (#{resumeName,jdbcType=VARCHAR}, #{resumePicture,jdbcType=VARCHAR}, #{resumeGender,jdbcType=VARCHAR}, 
+      #{resumeBirthday,jdbcType=DATE}, #{resumeLocation,jdbcType=VARCHAR}, #{resumeRegistration,jdbcType=VARCHAR}, 
+      #{resumePhone,jdbcType=VARCHAR}, #{resumeEmail,jdbcType=VARCHAR}, #{resumeTarget,jdbcType=VARCHAR}, 
+      #{resumeExperience,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="resume_id" keyProperty="resumeId" parameterType="edu.ouc.stu.model.TbResume" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tb_resume
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="resumeName != null">
+        resume_name,
+      </if>
+      <if test="resumePicture != null">
+        resume_picture,
+      </if>
+      <if test="resumeGender != null">
+        resume_gender,
+      </if>
+      <if test="resumeBirthday != null">
+        resume_birthday,
+      </if>
+      <if test="resumeLocation != null">
+        resume_location,
+      </if>
+      <if test="resumeRegistration != null">
+        resume_registration,
+      </if>
+      <if test="resumePhone != null">
+        resume_phone,
+      </if>
+      <if test="resumeEmail != null">
+        resume_email,
+      </if>
+      <if test="resumeTarget != null">
+        resume_target,
+      </if>
+      <if test="resumeExperience != null">
+        resume_experience,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="resumeName != null">
+        #{resumeName,jdbcType=VARCHAR},
+      </if>
+      <if test="resumePicture != null">
+        #{resumePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeGender != null">
+        #{resumeGender,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeBirthday != null">
+        #{resumeBirthday,jdbcType=DATE},
+      </if>
+      <if test="resumeLocation != null">
+        #{resumeLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeRegistration != null">
+        #{resumeRegistration,jdbcType=VARCHAR},
+      </if>
+      <if test="resumePhone != null">
+        #{resumePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeEmail != null">
+        #{resumeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeTarget != null">
+        #{resumeTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeExperience != null">
+        #{resumeExperience,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.ouc.stu.model.TbResume">
+    <!--@mbg.generated-->
+    update tb_resume
+    <set>
+      <if test="resumeName != null">
+        resume_name = #{resumeName,jdbcType=VARCHAR},
+      </if>
+      <if test="resumePicture != null">
+        resume_picture = #{resumePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeGender != null">
+        resume_gender = #{resumeGender,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeBirthday != null">
+        resume_birthday = #{resumeBirthday,jdbcType=DATE},
+      </if>
+      <if test="resumeLocation != null">
+        resume_location = #{resumeLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeRegistration != null">
+        resume_registration = #{resumeRegistration,jdbcType=VARCHAR},
+      </if>
+      <if test="resumePhone != null">
+        resume_phone = #{resumePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeEmail != null">
+        resume_email = #{resumeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeTarget != null">
+        resume_target = #{resumeTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeExperience != null">
+        resume_experience = #{resumeExperience,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where resume_id = #{resumeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.ouc.stu.model.TbResume">
+    <!--@mbg.generated-->
+    update tb_resume
+    set resume_name = #{resumeName,jdbcType=VARCHAR},
+      resume_picture = #{resumePicture,jdbcType=VARCHAR},
+      resume_gender = #{resumeGender,jdbcType=VARCHAR},
+      resume_birthday = #{resumeBirthday,jdbcType=DATE},
+      resume_location = #{resumeLocation,jdbcType=VARCHAR},
+      resume_registration = #{resumeRegistration,jdbcType=VARCHAR},
+      resume_phone = #{resumePhone,jdbcType=VARCHAR},
+      resume_email = #{resumeEmail,jdbcType=VARCHAR},
+      resume_target = #{resumeTarget,jdbcType=VARCHAR},
+      resume_experience = #{resumeExperience,jdbcType=VARCHAR}
+    where resume_id = #{resumeId,jdbcType=INTEGER}
+  </update>
+</mapper>

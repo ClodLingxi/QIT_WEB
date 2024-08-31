@@ -1,14 +1,12 @@
-<%@ page import="com.lingxi.dataform.ResumeData" %>
-<%@ page import="com.lingxi.dataform.Passport" %>
+<%@ page import="edu.ouc.stu.model.TbUsers" %>
+<%@ page import="edu.ouc.stu.system.Tomcat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    Passport passport = (Passport) session.getAttribute("passport");
-    if (passport != null) {
-        request.setAttribute("ResumeList", ResumeData.getResumeList(passport));
-    } else {
-
+    TbUsers passport = (TbUsers) session.getAttribute("passport");
+    if (passport != null && Tomcat.userManager.validate(passport) != null) {
+        request.setAttribute("resumeList", Tomcat.resumeMapper.selectAllResumes());
     }
 %>
 
@@ -46,16 +44,16 @@
         </thead>
         <tbody>
 
-        <jstl:forEach items="${ResumeList}" var="resume">
+        <jstl:forEach items="${resumeList}" var="resume">
             <tr height="50px">
                 <td><input name="" type="checkbox" value=""/></td>
-                <td>${resume.name}</td>
-                <td>${resume.phone}</td>
-                <td>${resume.email}</td>
-                <td>${resume.experience}</td>
-                <td>${resume.target}</td>
-                <td><a href="resumeView.jsp?id=${resume.id}" class="tablelink">查看</a> &nbsp;&nbsp;
-                    <a href="${pageContext.request.contextPath}/ResumeServlet?type=delete&id=${resume.id}" class="tablelink"> 删除</a>
+                <td>${resume.resumeName}</td>
+                <td>${resume.resumePhone}</td>
+                <td>${resume.resumeEmail}</td>
+                <td>${resume.resumeExperience}</td>
+                <td>${resume.resumeTarget}</td>
+                <td><a href="resumeView.jsp?id=${resume.resumeId}" class="tablelink">查看</a> &nbsp;&nbsp;
+                    <a href="${pageContext.request.contextPath}/ResumeManage?type=delete&id=${resume.resumeId}" class="tablelink"> 删除</a>
                 </td>
             </tr>
         </jstl:forEach>
