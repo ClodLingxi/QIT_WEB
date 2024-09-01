@@ -6,32 +6,24 @@
     <link href="../css/manageadmin.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<script>
-    function selectUser() {
-        let select = document.getElementById("userRole");
-        let index = select.selectedIndex;
-        let user_input = document.getElementById("userName")
-        let user_name = user_input.value;
-        parent.location.href
-            =`userList.jsp?role=${select.options[index].value}&selectName=${user_name}`;
-    }
-</script>
-<ul class="seachform">
-    <li>
-        <div class="vocation">
-            <select class="select3" name="userRole" id="userRole">
-                <option value="3">普通用户</option>
-                <option value="2">企业管理员</option>
-                <option value="1">系统管理员</option>
-            </select>
-        </div>
-    </li>
-    <li>
-        <input type="text" class="scinput" value="" id="userName"/>
-    </li>
-    <li>
-        <button name="" class="scbtn" onclick="selectUser()">查询</button>
-    </li>
-</ul>
+<form action="/UserManage?type=getUser&pageNum=1" method="post" target="_parent">
+    <ul class="seachform">
+        <li>
+            <div class="vocation">
+                <select class="select3" name="userRole" id="userRole">
+                    <option value="3">普通用户</option>
+                    <option value="2">企业管理员</option>
+                    <option value="1">系统管理员</option>
+                </select>
+            </div>
+        </li>
+        <li>
+            <input type="text" class="scinput" name="userName" id="userName"/>
+        </li>
+        <li>
+            <button type="submit" class="scbtn">查询</button>
+        </li>
+    </ul>
+</form>
 </body>
 </html>

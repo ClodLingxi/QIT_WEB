@@ -52,6 +52,15 @@ public interface TbUsersMapper {
     TbUsers selectByPrimaryKey(Integer userId);
 
     /**
+     * select some users by param
+     * @param startUser start user row
+     * @param userRole user role
+     * @param selectName user realName
+     * @return List of Users
+     */
+    List<TbUsers> selectSomeUsersByParam(@Param("startUser")int startUser, @Param("userRole")String userRole, @Param("selectName") String selectName);
+
+    /**
      * select by user search
      * @param userRole user role
      * @param selectName user realName
@@ -59,12 +68,21 @@ public interface TbUsersMapper {
      */
     List<TbUsers> selectByParam(@Param("userRole")String userRole, @Param("selectName") String selectName);
 
+    /**
+     * select some users
+     * @param startUser start user row
+     * @return List of Users
+     */
+    List<TbUsers> selectSomeUsers(@Param("startUser")int startUser);
+
 
     /**
      * select all users
      * @return List of Users
      */
     List<TbUsers> selectAllUsers();
+
+    Integer countAllUsers();
 
     /**
      * update record selective

@@ -44,6 +44,21 @@
         where USER_ID = #{userId,jdbcType=INTEGER}
         limit 1
     </select>
+    <select id="selectSomeUsersByParam" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbUsers">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_users
+        where
+        <trim suffixOverrides="and">
+            <if test="userRole != null">
+                USER_ROLE = #{userRole} and
+            </if>
+            <if test='selectName != null and selectName != ""'>
+                USER_REALNAME like concat('%', #{selectName}, '%')
+            </if>
+        </trim>
+        limit 20 offset #{startUser, javaType=integer}
+    </select>
     <select id="selectByParam" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -58,9 +73,20 @@
             </if>
         </trim>
     </select>
+    <select id="selectSomeUsers" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbUsers">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_users
+        limit 20 offset #{startUser, javaType=integer}
+    </select>
     <select id="selectAllUsers" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbUsers">
         select
         <include refid="Base_Column_List"/>
+        from tb_users
+    </select>
+    <select id="countAllUsers" resultType="integer">
+        select
+            count(*)
         from tb_users
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

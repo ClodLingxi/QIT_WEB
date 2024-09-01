@@ -1,19 +1,6 @@
-<%@ page import="edu.ouc.stu.model.TbUsers" %>
-<%@ page import="edu.ouc.stu.system.Tomcat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    TbUsers passport = (TbUsers) session.getAttribute("passport");
-    if (passport != null && Tomcat.userManager.validate(passport) != null) {
-        String role = request.getParameter("role");
-        String selectName = request.getParameter("selectName");
-        if(role == null){
-            request.setAttribute("userList", Tomcat.userManager.selectAllUsers());
-        }
-        else request.setAttribute("userList", Tomcat.userManager.selectByParam(role, selectName));
-    }
-%>
 
 <!doctype html>
 <html>
@@ -32,11 +19,11 @@
 <div class="rightinfo">
     <div class="tools">
         <ul class="toolbar">
-            <li class="click"><span><img src="../images/t01.png"/></span><a href="userAdd.jsp">添加</a></li>
-            <li class="click"><span><img src="../images/t02.png"/></span><a href="userAdd.jsp">修改</a></li>
-            <li><span><img src="../images/t03.png"/></span><a href="userDelete.html">删除</a></li>
+            <li class="click"><span><img src="../images/t01.png"/></span><a href="${pageContext.request.contextPath}/admin/manage/userAdd.jsp">添加</a></li>
+            <li class="click"><span><img src="../images/t02.png"/></span><a href="${pageContext.request.contextPath}/admin/manage/userAdd.jsp">修改</a></li>
+            <li><span><img src="../images/t03.png"/></span><a href="./userDelete.html">删除</a></li>
         </ul>
-        <iframe src="userSearch.html" scrolling="no" frameborder="0" width="400" height="42"></iframe>
+        <iframe src="${pageContext.request.contextPath}/admin/manage/userSearch.html" scrolling="no" frameborder="0" width="400" height="42"></iframe>
     </div>
     <table class="imgtable">
         <thead>
@@ -52,6 +39,7 @@
         </thead>
         <tbody>
 
+        <jsp:useBean id="userList" scope="request" type="java.util.List"/>
         <jstl:forEach items="${userList}" var="user">
             <tr height="50px">
                 <td><input name="" type="checkbox" value=""/></td>
@@ -66,8 +54,8 @@
                 </td>
                 <td>${user.userState == 1 ? "启用" : "禁用"} </td>
                 <td>
-                    <a href="userEdit.jsp?id=${user.userId}" class="tablelink">修改</a> &nbsp;&nbsp;
-                    <a href="../../UserManage?type=deleteUser&id=${user.userId}" class="tablelink">删除</a>
+                    <a href="${pageContext.request.contextPath}/admin/manage/userEdit.jsp?id=${user.userId}" class="tablelink">修改</a> &nbsp;&nbsp;
+                    <a href="UserManage?type=deleteUser&id=${user.userId}" class="tablelink">删除</a>
                 </td>
             </tr>
         </jstl:forEach>
@@ -75,12 +63,20 @@
         </tbody>
     </table>
     <div class="pagin">
-        <div class="message">共<i class="blue">1256</i>页，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
+        <div class="message">共<i class="blue">${requestScope.get("totalPage")}</i>页，当前显示第&nbsp;<i class="blue">${requestScope.get("pageNum")}&nbsp;</i>页</div>
         <ul class="paginList">
-            <li class="paginItem"><a href="javascript:;">首页</a></li>
-            <li class="paginItem"><a href="javascript:;">上一页<span class="pagepre"></span></a></li>
-            <li class="paginItem"><a href="javascript:;">下一页<span class="pagenxt"></span></a></li>
-            <li class="paginItem"><a href="javascript:;">尾页</a></li>
+            <li class="paginItem">
+                <a href="UserManage?type=getUser&pageNum=1&role=${requestScope.get("role")}&selectName=${requestScope.get("selectName")}">首页</a>
+            </li>
+            <li class="paginItem">
+                <a href="UserManage?type=getUser&pageNum=${requestScope.get("pageNum") - 1}&role=${requestScope.get("role")}&selectName=${requestScope.get("selectName")}">上一页<span class="pagepre"></span></a>
+            </li>
+            <li class="paginItem">
+                <a href="UserManage?type=getUser&pageNum=${requestScope.get("pageNum") + 1}&role=${requestScope.get("role")}&selectName=${requestScope.get("selectName")}">下一页<span class="pagenxt"></span></a>
+            </li>
+            <li class="paginItem">
+                <a href="UserManage?type=getUser&pageNum=${requestScope.get("totalPage")}&role=${requestScope.get("role")}&selectName=${requestScope.get("selectName")}">尾页</a>
+            </li>
         </ul>
     </div>
 </div>
