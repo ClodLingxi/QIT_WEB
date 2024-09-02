@@ -30,11 +30,11 @@
                 document.getElementById("companyType").focus();
                 return false;
             }
-            // if(document.getElementById("companyPic").value == ""){
-            // 	alert("请选择企业宣传图片！");
-            // 	document.getElementById("companyPic").focus();
-            // 	return false;
-            // }
+            if(document.getElementById("companyPic").value == ""){
+            	alert("请选择企业宣传图片！");
+            	document.getElementById("companyPic").focus();
+            	return false;
+            }
             return true;
         }
     </script>
@@ -48,10 +48,8 @@
 </div>
 <div class="formbody">
     <div class="usual">
-        <%--  <form name="frm" action="${pageContext.request.contextPath}/CompanyServlet?type=add" method="post" --%>
-        <%--        enctype="multipart/form-data" onsubmit="return validate();">--%>
-            <form name="frm" action="${pageContext.request.contextPath}/CompanyManage?type=addCompany" method="post">
-              onsubmit="return validate();">
+        <form name="frm" action="${pageContext.request.contextPath}/CompanyManage?type=addCompany" method="post"
+              enctype="multipart/form-data" onsubmit="return validate();">
             <div class="tabson">
                 <ul class="forminfo">
                     <li>

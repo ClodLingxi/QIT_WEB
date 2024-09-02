@@ -4,6 +4,8 @@ import edu.ouc.stu.model.TbCompany;
 import edu.ouc.stu.model.TbJob;
 import edu.ouc.stu.model.TbUsers;
 import edu.ouc.stu.system.Tomcat;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-
+@MultipartConfig
 @WebServlet("/CompanyManage")
 public class CompanyManage extends HttpServlet {
 
@@ -23,7 +25,7 @@ public class CompanyManage extends HttpServlet {
         resp.sendRedirect("/admin/manage/companyList.jsp");
     }
 
-    private static void method(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private static void method(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String type = req.getParameter("type");
         if (type != null) {
             TbUsers passport = (TbUsers) req.getSession().getAttribute("passport");
@@ -41,7 +43,7 @@ public class CompanyManage extends HttpServlet {
                     case "updateCompany" -> {
                         if (req.getParameter("id") != null) {
                             int id = Integer.parseInt(req.getParameter("id"));
-                            TbCompany company = TbCompany.getInstance(req);
+                            TbCompany company = TbCompany.getInstance(req, id);
                             if(company != null){
                                 if(Tomcat.companyMapper.updateByPrimaryKey(company) > 0){
                                     successAction(req, resp);
@@ -65,12 +67,12 @@ public class CompanyManage extends HttpServlet {
         failAction(req, resp);
     }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         method(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         method(req, resp);
     }
 }
