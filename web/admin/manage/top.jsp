@@ -19,10 +19,12 @@
             <li><span><img src="../images/help.png" title="帮助" class="helpimg"/></span><a href="#">帮助</a></li>
             <li><a href="#">关于</a></li>
             <li>
-                <a href="../../UserServlet?type=exit" target="_parent">退出</a>
+                <a href="../../UserServlet?type=exit&role=admin" target="_parent">退出</a>
             </li>
         </ul>
-        <div class="user"><span>${sessionScope.passport.getUserName()}</span></div>
+        <div class="user"><span>
+                ${sessionScope.passport.getUserName()}
+            </span></div>
     </div>
     <ul class="nav">
         <li><a href="http://www.itoffer.cn" target="_blank" class="selected"><img src="../images/globe.png"

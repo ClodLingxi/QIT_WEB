@@ -3,6 +3,7 @@ package edu.ouc.stu.servlet;
 import edu.ouc.stu.mapper.TbUsersMapper;
 import edu.ouc.stu.model.TbUsers;
 import edu.ouc.stu.system.Tomcat;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,24 +30,39 @@ public class UserServlet extends HttpServlet {
 //        return true;
 //    }
 
+    private static void exitAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String role = req.getParameter("role");
+        if (role != null && role.equals("admin")) {
+            resp.sendRedirect(req.getContextPath() + CLIENT_PATH);
+        }
+        else resp.sendRedirect(req.getContextPath() + "/client/login.jsp");
+        req.getSession().invalidate();
+    }
+
     private static void failAction(String message, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.getSession().setAttribute("msg", message);
         resp.sendRedirect(req.getHeader("referer"));
     }
 
-    private static void successAction(TbUsers passport, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private static void successAction(TbUsers passport, HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         req.getSession().setAttribute("passport", passport);
         System.out.println(passport.getUserRole());
         System.out.println(TbUsers.Role.admin.ordinal());
         if (passport.getUserRole() == TbUsers.Role.admin.ordinal()) {
             resp.sendRedirect(ADMIN_PATH);
         } else {
-            resp.sendRedirect(CLIENT_PATH);
+            req.getRequestDispatcher(CLIENT_PATH).forward(req, resp);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+
+        String type = req.getParameter("type");
+        if(type != null && type.equals("exit")) {
+            exitAction(req, resp);
+            return;
+        }
 
         String username = req.getParameter("userLogname");
         String password = req.getParameter("userPwd");
@@ -63,4 +79,8 @@ public class UserServlet extends HttpServlet {
         } else failAction("空数据", req, resp);
     }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        this.doPost(req,resp);
+    }
 }
