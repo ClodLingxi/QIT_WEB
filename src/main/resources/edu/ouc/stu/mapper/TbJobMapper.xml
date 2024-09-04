@@ -23,6 +23,19 @@
         from tb_job
         where job_id = #{jobId,jdbcType=INTEGER}
     </select>
+    <select id="selectByParamAndCompanyName" parameterType="java.lang.String" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbJob">
+        select
+        job_id, job_name, tb_job.company_id, job_hiringNum, job_applicantNum, job_endDate, job_state, COMPANY_NAME
+        from tb_job join qit.tb_company tc on tb_job.company_id = tc.COMPANY_ID
+        <trim prefix="where" suffixOverrides="and">
+            <if test='companyId != null and companyId != "0"'>
+                tb_job.company_id = #{companyId} and
+            </if>
+            <if test='selectName != null and selectName != ""'>
+                tb_job.job_name like concat('%', #{selectName}, '%')
+            </if>
+        </trim>
+    </select>
     <select id="selectByParam" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -35,6 +48,11 @@
                 job_name like concat('%', #{selectName}, '%')
             </if>
         </trim>
+    </select>
+    <select id="selectAllJobsAndCompanyName" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbJob">
+        select
+        job_id, job_name, tb_job.company_id, job_hiringNum, job_applicantNum, job_endDate, job_state, COMPANY_NAME
+        from tb_job join qit.tb_company tc on tb_job.company_id = tc.COMPANY_ID
     </select>
     <select id="selectAllJobs" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbJob">
         select

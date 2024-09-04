@@ -8,8 +8,8 @@
     if (passport != null && Tomcat.userManager.validate(passport) != null) {
         String id = request.getParameter("id");
         String selectName = request.getParameter("selectName");
-        if (id == null) request.setAttribute("jobList", Tomcat.jobMapper.selectAllJobs());
-        else request.setAttribute("jobList", Tomcat.jobMapper.selectByParam(id, selectName));
+        if (id == null) request.setAttribute("jobList", Tomcat.jobMapper.selectAllJobsAndCompanyName());
+        else request.setAttribute("jobList", Tomcat.jobMapper.selectByParamAndCompanyName(id, selectName));
     }
 %>
 
@@ -52,13 +52,13 @@
         <jstl:forEach items="${jobList}" var="job">
             <tr height="50px">
                 <td>${job.jobName}</td>
-                <td>${job.companyId}</td>
+                <td>${job.companyName}</td>
                 <td>${job.jobHiringnum}</td>
                 <td>${job.jobApplicantnum}</td>
                 <td>${job.jobEnddate}</td>
                 <td>${job.jobState}</td>
                 <td ><a href="#" class="tablelink">修改</a> &nbsp;&nbsp;
-                    <a href="${pageContext.request.contextPath}/JobServlet?type=deleteJob&id=${job.jobId}" class="tablelink"> 删除</a></td>
+                    <a href="${pageContext.request.contextPath}/JobManage?type=deleteJob&id=${job.jobId}" class="tablelink"> 删除</a></td>
             </tr>
         </jstl:forEach>
 
