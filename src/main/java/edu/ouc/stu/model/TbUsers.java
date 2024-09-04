@@ -43,6 +43,9 @@ public class TbUsers {
         this.userName = userName;
         this.userPwd = userPwd;
         this.userRole = role;
+        this.userRealname = "";
+        this.userEmail = "";
+        this.userState = 1;
     }
 
     public static TbUsers getInstance(String userName, String userPwd, String role) {

@@ -39,6 +39,25 @@ public class UserServlet extends HttpServlet {
         req.getSession().invalidate();
     }
 
+    private static void registerAction(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        String role = req.getParameter("role");
+        if (role != null && role.equals("user")) {
+            String username = req.getParameter("userLogname");
+            String password = req.getParameter("userPwd");
+            TbUsers passport = TbUsers.getInstance(username, password, "user");
+            Object id = Tomcat.userManager.validate(passport);
+            if (id != null) {
+                failAction("账号已存在", req, resp);
+                return;
+            }
+            if(Tomcat.userManager.insert(passport) > 0){
+                successAction(passport, req, resp);
+                return;
+            }
+            failAction("添加账号失败", req, resp);
+        }
+    }
+
     private static void failAction(String message, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.getSession().setAttribute("msg", message);
         resp.sendRedirect(req.getHeader("referer"));
@@ -59,9 +78,16 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         String type = req.getParameter("type");
-        if(type != null && type.equals("exit")) {
-            exitAction(req, resp);
-            return;
+        if(type != null) {
+            if(type.equals("exit")) {
+                exitAction(req, resp);
+                return;
+            }
+            else if(type.equals("register")) {
+                registerAction(req, resp);
+                return;
+            }
+
         }
 
         String username = req.getParameter("userLogname");

@@ -28,9 +28,9 @@
         <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-top">
             <div class="tn-box-content tn-widget-content tn-corner-all">
                 <div class="it-sliderkit">
-                    <script src="js/sliderkit_002.js" type="text/javascript"></script>
-                    <script src="js/jquery.js" type="text/javascript"></script>
-                    <script src="js/sliderkit.js" type="text/javascript"></script>
+                    <script src="${pageContext.request.contextPath}/js/sliderkit_002.js" type="text/javascript"></script>
+                    <script src="${pageContext.request.contextPath}/js/jquery.js" type="text/javascript"></script>
+                    <script src="${pageContext.request.contextPath}/js/sliderkit.js" type="text/javascript"></script>
                     <div style="display: block;" class="sliderkit photoslider-1click">
                         <div class="sliderkit-btn sliderkit-go-btn sliderkit-go-prev" id="previousSlide"
                              style="display: block;"><a rel="nofollow" href="javascript:;"><span>Previous</span></a>
@@ -54,9 +54,9 @@
                             </div>
                         </div>
                         <div class="sliderkit-panels">
-                            <div style="display: block;" class="sliderkit-panel"><a href="Index.htm" target="_blank">
+                            <div style="display: block;" class="sliderkit-panel"><a href="${pageContext.request.contextPath}/index.htm" target="_blank">
                                 <img src="${pageContext.request.contextPath}/client/images/635086152036177812.jpg" alt="1"> </a></div>
-                            <div style="display: block;" class="sliderkit-panel"><a href="Index.htm" target="_blank">
+                            <div style="display: block;" class="sliderkit-panel"><a href="${pageContext.request.contextPath}/Index.htm" target="_blank">
                                 <img src="${pageContext.request.contextPath}/client/images/635089669584615000.jpg" alt="2"> </a></div>
                             <div style="display: block;" class="sliderkit-panel sliderkit-panel-old"><a href="Index.htm"
                                                                                                         target="_blank">
