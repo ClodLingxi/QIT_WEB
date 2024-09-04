@@ -63,7 +63,7 @@ public class TbCompany {
         String uuid = UUID.randomUUID().toString();
         String newFileName = uuid + fiLeType;
 
-        companyPic.write(realPath + "/upload/" + newFileName);
+        companyPic.write(realPath + "/upload/images/" + newFileName);
 
         if (companyName != null && companyArea != null && companySize != null &&
                 companyType != null && companyBrief != null && companyState != null && companySort != null) {

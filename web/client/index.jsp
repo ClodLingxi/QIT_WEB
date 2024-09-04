@@ -1,8 +1,11 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page import="edu.ouc.stu.system.Tomcat" %>
+<%@ page import="edu.ouc.stu.model.TbUsers" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
+<%
+    request.setAttribute("companyList", Tomcat.companyMapper.selectAllCompany());
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,13 +25,15 @@
 </head>
 <body class="tn-page-bg">
 
-<iframe src="${pageContext.request.contextPath}/client/jsp.jsp" width="100%" height="100" scrolling="no" frameborder="0"></iframe>
+<iframe src="${pageContext.request.contextPath}/client/jsp.jsp" width="100%" height="100" scrolling="no"
+        frameborder="0"></iframe>
 <div id="tn-content">
     <div class="it-home-topbg">
         <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-top">
             <div class="tn-box-content tn-widget-content tn-corner-all">
                 <div class="it-sliderkit">
-                    <script src="${pageContext.request.contextPath}/js/sliderkit_002.js" type="text/javascript"></script>
+                    <script src="${pageContext.request.contextPath}/js/sliderkit_002.js"
+                            type="text/javascript"></script>
                     <script src="${pageContext.request.contextPath}/js/jquery.js" type="text/javascript"></script>
                     <script src="${pageContext.request.contextPath}/js/sliderkit.js" type="text/javascript"></script>
                     <div style="display: block;" class="sliderkit photoslider-1click">
@@ -54,18 +59,26 @@
                             </div>
                         </div>
                         <div class="sliderkit-panels">
-                            <div style="display: block;" class="sliderkit-panel"><a href="${pageContext.request.contextPath}/index.htm" target="_blank">
-                                <img src="${pageContext.request.contextPath}/client/images/635086152036177812.jpg" alt="1"> </a></div>
-                            <div style="display: block;" class="sliderkit-panel"><a href="${pageContext.request.contextPath}/Index.htm" target="_blank">
-                                <img src="${pageContext.request.contextPath}/client/images/635089669584615000.jpg" alt="2"> </a></div>
+                            <div style="display: block;" class="sliderkit-panel"><a
+                                    href="${pageContext.request.contextPath}/index.htm" target="_blank">
+                                <img src="${pageContext.request.contextPath}/client/images/635086152036177812.jpg"
+                                     alt="1"> </a></div>
+                            <div style="display: block;" class="sliderkit-panel"><a
+                                    href="${pageContext.request.contextPath}/Index.htm" target="_blank">
+                                <img src="${pageContext.request.contextPath}/client/images/635089669584615000.jpg"
+                                     alt="2"> </a></div>
                             <div style="display: block;" class="sliderkit-panel sliderkit-panel-old"><a href="Index.htm"
                                                                                                         target="_blank">
-                                <img src="${pageContext.request.contextPath}/client/images/635084673057125000.jpg" alt="3"> </a></div>
+                                <img src="${pageContext.request.contextPath}/client/images/635084673057125000.jpg"
+                                     alt="3"> </a></div>
                             <div style="display: block;" class="sliderkit-panel sliderkit-panel-active"><a
-                                    href="Index.htm" target="_blank"> <img src="${pageContext.request.contextPath}/client/images/635085509625826250.jpg" alt="4">
+                                    href="Index.htm" target="_blank"> <img
+                                    src="${pageContext.request.contextPath}/client/images/635085509625826250.jpg"
+                                    alt="4">
                             </a></div>
                             <div style="display: block;" class="sliderkit-panel"><a href="#" target="_blank"> <img
-                                    src="${pageContext.request.contextPath}/client/images/635084672065718750.jpg" alt="5"> </a></div>
+                                    src="${pageContext.request.contextPath}/client/images/635084672065718750.jpg"
+                                    alt="5"> </a></div>
                         </div>
                     </div>
                     <script type="text/javascript">
@@ -100,45 +113,36 @@
             <div class="tn-box-content tn-widget-content tn-corner-all">
                 <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.html"
                                                                                   target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635560750235172731.jpg" width="990"> </a></div>
+                        src="${pageContext.request.contextPath}/client/images/635560750235172731.jpg" width="990"> </a>
+                </div>
             </div>
         </div>
     </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><span><a
-                        class="tn-button it-button-video"
-                        href="http://www.itoffer.cn/Company/131#moreVideos"></a></span> <a href="recruit/company.html"
-                                                                                           target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635170123249913750.jpg" width="990"> </a></div>
+
+    <jsp:useBean id="companyList" scope="request" type="java.util.List<edu.ouc.stu.model.TbCompany>"/>
+    <jstl:forEach items="${companyList}" var="company">
+        <div class="tn-grid">
+            <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
+                <div class="tn-box-content tn-widget-content tn-corner-all">
+                    <div class="it-company-keyimg tn-border-bottom tn-border-gray"><span><a
+                            class="tn-button it-button-video"
+                            href="http://www.itoffer.cn/Company/131#moreVideos"></a></span>
+                        <a href="${pageContext.request.contextPath}/client/recruit/company.html?id=${company.companyId}" target="_blank">
+                            <img src="${pageContext.request.contextPath}/upload/images/${company.companyPic}"
+                                 width="990">
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.html"
-                                                                                  target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635086129655240312.jpg" width="990"> </a></div>
-            </div>
-        </div>
-    </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.html"
-                                                                                  target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635508801853812771.jpg" width="990"> </a></div>
-            </div>
-        </div>
-    </div>
+    </jstl:forEach>
     <div class="tn-grid">
         <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
             <div class="tn-box-content tn-widget-content tn-corner-all">
                 <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.html"
                                                                                   target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635386133707515461.jpg" width="990"> </a></div>
+                        src="${pageContext.request.contextPath}/client/images/635386133707515461.jpg" width="990"> </a>
+                </div>
                 <div class="it-home-present">
 
                     <div class="it-present-btn"><a class=" tn-button tn-button-home-apply" href="recruit/company.html">
@@ -176,125 +180,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><span><a
-                        class="tn-button it-button-video" href="#"></a></span> <a href="company.html" target="_blank">
-                    <img src="${pageContext.request.contextPath}/client/images/635061323749843750.jpg" width="990"> </a></div>
-            </div>
-        </div>
-    </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.html"
-                                                                                  target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635508636209238443.jpg" width="990"> </a></div>
-                <div class="it-home-present">
-                    <div class="tn-helper-right it-quiet">
-                        <p class="it-quiet-btn tn-button"><a class="it-success-case"
-                                                             href="http://www.itoffer.cn/Home/SuccessCases?companyId=285"
-                                                             target="_blank">成功案例</a> <span class="it-line01"
-                                                                                                onmouseover="setShare('对日Cobol软件开发工程师', 'http://www.itoffer.cn/Job/001004005-68');"> <a
-                                style=" float:right;" href="#" class="jiathis jiathis_txt jtico jtico_jiathis it-share"
-                                target="_blank">分享</a> </span></p>
-                    </div>
-                    <div class="it-present-btn"><a class=" tn-button tn-button-home-apply" href="recruit/company.html">
-                        <span class="tn-button-text">我要申请</span> </a></div>
-                    <div class="it-present-text">
-                        <div class="it-line01 it-text-bom">
-                            <p class="it-text-tit">职位</p>
-                            <p class="it-line01 it-text-explain"><span class="tn-icon it-home-arrow"></span> <span
-                                    class="tn-helper-right tn-action"> <a href="#" target="_blank"
-                                                                          class="tn-button tn-corner-all tn-button-text-only tn-button-semidlong"> <span
-                                    class="tn-button-text">更多职位</span> </a> </span> <a href="#" target="_blank"
-                                                                                           title="对日Cobol软件开发工程师">对日Cobol软件开发工程师</a>
-                            </p>
-                            <p class="it-line01 it-home-wid"> <span class="tn-explain-icon"> <span
-                                    class="tn-icon it-icon-time"></span> <span class="tn-icon-text" id="timeSpan_150">299天 22小时 42分钟 30秒</span>
-                    <script type="text/javascript">
-                             $(document).ready(function () {
-                                 onTimer("#timeSpan_150", 25915419.9044896);
-                             });
-                        </script> 
-                    </span></p>
-                        </div>
-                        <div class="it-line01 it-text-top">
-                            <p class="it-text-tit">薪资</p>
-                            <p class="it-line01 it-text-explain"><span class="tn-icon it-home-arrow"></span> <b
-                                    title="3500-4000">3500-4000</b></p>
-                            <p class="it-line01 it-home-wid"><span class="tn-explain-icon"> <span
-                                    class="tn-icon it-icon-people"></span> <span class="tn-icon-text">0人已经申请</span> </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.html"
-                                                                                  target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635508802169230812.jpg" width="990"> </a></div>
-            </div>
-        </div>
-    </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="#" target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635086294253052812.jpg" width="990"> </a></div>
-            </div>
-        </div>
-    </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><span><a
-                        class="tn-button it-button-video"
-                        href="http://www.itoffer.cn/Company/145#moreVideos"></a></span> <a
-                        href="http://www.itoffer.cn/Company/145" target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635169304955382500.jpg" width="990"> </a></div>
-            </div>
-        </div>
-    </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><span><a
-                        class="tn-button it-button-video" href="#"></a></span> <a href="#" target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635284036333940135.jpg" width="990"> </a></div>
-            </div>
-        </div>
-    </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.html"
-                                                                                  target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635084591046656250.jpg" width="990"> </a></div>
-            </div>
-        </div>
-    </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="company.html" target="_blank">
-                    <img src="${pageContext.request.contextPath}/client/images/635062155449062500.jpg" width="990"> </a></div>
-            </div>
-        </div>
-    </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="#" target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635084672065718750.jpg" width="990"> </a></div>
             </div>
         </div>
     </div>
@@ -376,55 +261,75 @@
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="博彦科技">
-                            <img alt="博彦科技" src="${pageContext.request.contextPath}/client/images/634954112522421875.jpg" width="120"><span></span></a></p>
+                            <img alt="博彦科技"
+                                 src="${pageContext.request.contextPath}/client/images/634954112522421875.jpg"
+                                 width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="东南融通">
-                            <img alt="东南融通" src="${pageContext.request.contextPath}/client/images/634954112688671875.jpg" width="120"><span></span></a></p>
+                            <img alt="东南融通"
+                                 src="${pageContext.request.contextPath}/client/images/634954112688671875.jpg"
+                                 width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="华为"> <img
-                                alt="华为" src="${pageContext.request.contextPath}/client/images/634954113455078125.jpg" width="120"><span></span></a></p>
+                                alt="华为" src="${pageContext.request.contextPath}/client/images/634954113455078125.jpg"
+                                width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="东软"> <img
-                                alt="东软" src="${pageContext.request.contextPath}/client/images/634954112813828125.jpg" width="120"><span></span></a></p>
+                                alt="东软" src="${pageContext.request.contextPath}/client/images/634954112813828125.jpg"
+                                width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="南天信息">
-                            <img alt="南天信息" src="${pageContext.request.contextPath}/client/images/634954113001796875.jpg" width="120"><span></span></a></p>
+                            <img alt="南天信息"
+                                 src="${pageContext.request.contextPath}/client/images/634954113001796875.jpg"
+                                 width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="群硕"> <img
-                                alt="群硕" src="${pageContext.request.contextPath}/client/images/634954113155078125.jpg" width="120"><span></span></a></p>
+                                alt="群硕" src="${pageContext.request.contextPath}/client/images/634954113155078125.jpg"
+                                width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="日立"> <img
-                                alt="日立" src="${pageContext.request.contextPath}/client/images/634954113301796875.jpg" width="120"><span></span></a></p>
+                                alt="日立" src="${pageContext.request.contextPath}/client/images/634954113301796875.jpg"
+                                width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="人人网">
-                            <img alt="人人网" src="${pageContext.request.contextPath}/client/images/634954206219375000.jpg" width="120"><span></span></a></p>
+                            <img alt="人人网"
+                                 src="${pageContext.request.contextPath}/client/images/634954206219375000.jpg"
+                                 width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="简柏特">
-                            <img alt="简柏特" src="${pageContext.request.contextPath}/client/images/634954217492226562.jpg" width="120"><span></span></a></p>
+                            <img alt="简柏特"
+                                 src="${pageContext.request.contextPath}/client/images/634954217492226562.jpg"
+                                 width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="联发科">
-                            <img alt="联发科" src="${pageContext.request.contextPath}/client/images/634954210151210937.jpg" width="120"><span></span></a></p>
+                            <img alt="联发科"
+                                 src="${pageContext.request.contextPath}/client/images/634954210151210937.jpg"
+                                 width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="创迹"> <img
-                                alt="创迹" src="${pageContext.request.contextPath}/client/images/634954212053007812.jpg" width="120"><span></span></a></p>
+                                alt="创迹" src="${pageContext.request.contextPath}/client/images/634954212053007812.jpg"
+                                width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="nec"> <img
-                                alt="nec" src="${pageContext.request.contextPath}/client/images/634954214356601562.jpg" width="120"><span></span></a></p>
+                                alt="nec" src="${pageContext.request.contextPath}/client/images/634954214356601562.jpg"
+                                width="120"><span></span></a></p>
                     </li>
                     <li class="tn-photo-item">
                         <p class="tn-photo-wrap tn-widget-content tn-border-gray"><a href="Index.htm" title="NTTDATA">
-                            <img alt="NTTDATA" src="${pageContext.request.contextPath}/client/images/634954215820976562.jpg" width="120"><span></span></a></p>
+                            <img alt="NTTDATA"
+                                 src="${pageContext.request.contextPath}/client/images/634954215820976562.jpg"
+                                 width="120"><span></span></a></p>
                     </li>
                 </ul>
             </div>
@@ -432,7 +337,8 @@
     </div>
 
 </div>
-<iframe src="${pageContext.request.contextPath}/client/foot.jsp" width="100%" height="150" scrolling="no" frameborder="0"></iframe>
+<iframe src="${pageContext.request.contextPath}/client/foot.jsp" width="100%" height="150" scrolling="no"
+        frameborder="0"></iframe>
 
 </body>
 </html>

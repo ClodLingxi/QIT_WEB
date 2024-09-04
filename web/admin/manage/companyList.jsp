@@ -57,7 +57,7 @@
                 <td>${company.companyState}</td>
                 <td>${company.companySort}</td>
                 <td>
-                    <img src="${pageContext.request.contextPath}/upload/${company.companyPic}" width="50px" height="50px">
+                    <img src="${pageContext.request.contextPath}/upload/images/${company.companyPic}" width="50px" height="50px">
                 </td>
                 <td ><a href="./companyEdit.jsp?id=${company.companyId}" class="tablelink">修改</a> &nbsp;&nbsp;
                     <a href="${pageContext.request.contextPath}/CompanyManage?type=deleteCompany&id=${company.companyId}" class="tablelink"> 删除</a>
