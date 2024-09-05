@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %>
+<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -15,7 +19,7 @@
         <div class="tn-box-content">
           <div class="tn-tabs">
             <ul class="tn-tabs-nav tn-widget-content ">
-              <li> <a href="resume.html">我的简历</a></li>
+              <li> <a href="resume.jsp">我的简历</a></li>
               <li class="tn-tabs-selected"> <a href="jobApply.html">我的申请</a></li>
             </ul>
             <div class="tn-tabs-panel tn-widget-content">

@@ -27,7 +27,7 @@ public class UserManage extends HttpServlet {
         String type = req.getParameter("type");
         if (type != null) {
             TbUsers passport = (TbUsers) req.getSession().getAttribute("passport");
-            if(Tomcat.userManager.validate(passport) != null){
+            if(Tomcat.userManager.validate(passport) != null && passport.getUserRole() == 1){
                 switch (type) {
                     case "addUser" -> {
                         TbUsers user = TbUsers.getInstance(req);

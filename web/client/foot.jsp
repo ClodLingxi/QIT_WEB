@@ -8,11 +8,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/client/css/base.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body><div class="foot">
-  <div class="foot_area"><a href="#">关于锐聘</a> | <a href="#">网站地图</a> | <a href="#">友情链接</a> | <a href="#">网站统计</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/21.gif" /><br />
+  <div class="foot_area"><a href="#">关于锐聘</a> | <a href="#">网站地图</a> | <a href="#">友情链接</a> | <a href="#">网站统计</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/client/images/21.gif" /><br />
 	  <br />
     copyright ©2013 ITOffer.com. All Rights Reserved.<br />
     <br />

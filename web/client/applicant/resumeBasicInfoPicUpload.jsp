@@ -1,4 +1,8 @@
-﻿<!doctype html>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8" %>
+<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -27,8 +31,8 @@
 		<!--tab设置-->
 		<div class="user_operate">
 			<ul style="float: left">
-			  <li> <a href="resume.html">我的简历</a></li>
-              <li class="tn-tabs-selected"> <a href="jobApply.html">我的申请</a></li>
+			  <li> <a href="resume.jsp">我的简历</a></li>
+              <li class="tn-tabs-selected"> <a href="jobApply.jsp">我的申请</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
@@ -63,7 +67,7 @@
 				</div>
 			</div>
 			<!--右边-->
-		<iframe src="resume_right.html" width="290" height="650"  scrolling="no" frameborder="0"></iframe>
+		<iframe src="resume_right.jsp" width="290" height="650" scrolling="no" frameborder="0"></iframe>
 		<div style="clear:both"></div>
 		</div>
 	</div>

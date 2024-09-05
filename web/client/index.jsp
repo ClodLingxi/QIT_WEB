@@ -1,5 +1,4 @@
 ﻿<%@ page import="edu.ouc.stu.system.Tomcat" %>
-<%@ page import="edu.ouc.stu.model.TbUsers" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -20,7 +19,7 @@
           name="description">
     <link href="${pageContext.request.contextPath}/client/css/base.css" type="text/css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/client/css/index.css" type="text/css" rel="stylesheet"/>
-    <script src="js/a.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/js/a.js" type="text/javascript"></script>
 
 </head>
 <body class="tn-page-bg">
@@ -111,7 +110,7 @@
     <div class="tn-grid">
         <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
             <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.html"
+                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.jsp"
                                                                                   target="_blank"> <img
                         src="${pageContext.request.contextPath}/client/images/635560750235172731.jpg" width="990"> </a>
                 </div>
@@ -127,7 +126,7 @@
                     <div class="it-company-keyimg tn-border-bottom tn-border-gray"><span><a
                             class="tn-button it-button-video"
                             href="http://www.itoffer.cn/Company/131#moreVideos"></a></span>
-                        <a href="${pageContext.request.contextPath}/client/recruit/company.html?id=${company.companyId}" target="_blank">
+                        <a href="${pageContext.request.contextPath}/client/recruit/company.jsp?id=${company.companyId}" target="_blank">
                             <img src="${pageContext.request.contextPath}/upload/images/${company.companyPic}"
                                  width="990">
                         </a>
@@ -139,13 +138,13 @@
     <div class="tn-grid">
         <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
             <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.html"
+                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.jsp"
                                                                                   target="_blank"> <img
                         src="${pageContext.request.contextPath}/client/images/635386133707515461.jpg" width="990"> </a>
                 </div>
                 <div class="it-home-present">
 
-                    <div class="it-present-btn"><a class=" tn-button tn-button-home-apply" href="recruit/company.html">
+                    <div class="it-present-btn"><a class=" tn-button tn-button-home-apply" href="recruit/company.jsp">
                         <span class="tn-button-text">我要申请</span> </a></div>
                     <div class="it-present-text" style="padding-left:185px;">
                         <div class="it-line01 it-text-bom">

@@ -1,13 +1,24 @@
-﻿<!DOCTYPE html>
+﻿<%@ page import="edu.ouc.stu.system.Tomcat" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+  String id = request.getParameter("id");
+  if(id == null) id = "1";
+  request.setAttribute("job", Tomcat.jobMapper.selectByPrimaryKey(Integer.parseInt(id)));
+%>
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>“锐聘之星”软件设计大赛 - 锐聘网</title>
-<link href="../css/base.css" type="text/css" rel="stylesheet">
-<link href="../css/job.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/client/css/base.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/client/css/job.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-<iframe src="../jsp.jsp" width="100%" height="120" scrolling="no" frameborder="0"> </iframe>
+<iframe src="${pageContext.request.contextPath}/client/jsp.jsp" width="100%" height="120" scrolling="no" frameborder="0"> </iframe>
 <div class="tn-grid">
   <div class="it-com-keyimg">
     <div class="tn-widget-content"> <img src="../images/635581231315281772.jpg"> </div>
@@ -20,7 +31,7 @@
         <div class="it-title-line"> <span class="it-hover-text"><a href="#" target="_blank">其它同类职位</a><span style="float:left;margin-right:20px">
           <div onmouseover="setShare(&quot;对日软件开发（提供岗前培训）&quot;,&quot;http://www.itoffer.cn/Job/001004005-57&quot;)"> <a href="http://www.jiathis.com/share/?uid=您的UID" target="_blank">分享</a> </div>
           </span></span>
-          <h3>对日软件开发（提供岗前培训）</h3>
+          <h3>${job.jobName}</h3>
         </div>
       </div>
       <div class="job">
@@ -28,7 +39,7 @@
           <tbody>
             <tr>
               <td class="it-table-title"> 招聘人数： </td>
-              <td class="tn-border-rb"> 40人 </td>
+              <td class="tn-border-rb"> ${job.jobHiringnum} </td>
               <td class="it-table-title"> 薪资： </td>
               <td class="tn-border-rb"> 4万-4.5万/年 </td>
             </tr>
@@ -141,6 +152,6 @@
     <div class="clear"> </div>
   </div>
 </div>
-<iframe src="../foot.jsp" width="100%" height="150" scrolling="no" frameborder="0"> </iframe>
+<iframe src="${pageContext.request.contextPath}/client/foot.jsp" width="100%" height="150" scrolling="no" frameborder="0"> </iframe>
 </body>
 </html>

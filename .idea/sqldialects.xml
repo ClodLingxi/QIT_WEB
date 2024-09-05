@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/../../../Temp/mybatisCodeHelper_QIT_TbJobMapper.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/../../../Temp/mybatisCodeHelper_QIT_TbResumeMapper.sql" dialect="MySQL" />
+  </component>
+</project>

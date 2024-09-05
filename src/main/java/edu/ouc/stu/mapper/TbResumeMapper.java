@@ -36,6 +36,8 @@ public interface TbResumeMapper {
      */
     TbResume selectByPrimaryKey(Integer resumeId);
 
+    TbResume selectByUserId(Integer resume_userId);
+
     /**
      * select all resumes
      *

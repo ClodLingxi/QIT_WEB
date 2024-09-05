@@ -27,7 +27,7 @@
                 <a href="${pageContext.request.contextPath}/client/register.jsp" target="_parent"><span class="type2">注册</span></a>
             </jstl:if>
 			<jstl:if test="${sessionScope.passport != null}">
-                <a href="${pageContext.request.contextPath}/client/applicant/resume.html" target="_parent">${sessionScope.passport.getUserName()}</a>
+                <a href="${pageContext.request.contextPath}/ResumeClient?type=queryResume" target="_parent">${sessionScope.passport.getUserName()}</a>
                 <a href="${pageContext.request.contextPath}/UserServlet?type=exit&role=user" target="_parent">退出</a>
             </jstl:if>
         </div>

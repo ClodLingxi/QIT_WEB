@@ -49,26 +49,11 @@ public interface TbJobMapper {
     List<TbJob> selectByParamAndCompanyName(@Param("companyId")String companyId, @Param("selectName") String selectName);
 
     /**
-     * select by param
-     * @param companyId company id
-     * @param selectName job name
-     * @return List of Jobs
-     */
-    List<TbJob> selectByParam(@Param("companyId")String companyId, @Param("selectName") String selectName);
-
-    /**
      * select all jobs and company
      *
      * @return List of Jobs
      */
     List<TbJob> selectAllJobsAndCompanyName();
-
-    /**
-     * select all jobs
-     *
-     * @return List of Jobs
-     */
-    List<TbJob> selectAllJobs();
 
     /**
      * update record selective

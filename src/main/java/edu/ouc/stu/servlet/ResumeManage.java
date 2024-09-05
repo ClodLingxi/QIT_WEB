@@ -26,7 +26,7 @@ public class ResumeManage extends HttpServlet {
         String type = req.getParameter("type");
         if (type != null) {
             TbUsers passport = (TbUsers) req.getSession().getAttribute("passport");
-            if(Tomcat.userManager.validate(passport) != null){
+            if(Tomcat.userManager.validate(passport) != null && passport.getUserRole() == 1){
                 switch (type) {
                     case "deleteResume" -> {
                         if (req.getParameter("id") != null) {

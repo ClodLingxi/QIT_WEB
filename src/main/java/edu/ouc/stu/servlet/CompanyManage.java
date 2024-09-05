@@ -29,7 +29,7 @@ public class CompanyManage extends HttpServlet {
         String type = req.getParameter("type");
         if (type != null) {
             TbUsers passport = (TbUsers) req.getSession().getAttribute("passport");
-            if(Tomcat.userManager.validate(passport) != null){
+            if(Tomcat.userManager.validate(passport) != null && passport.getUserRole() == 1){
                 switch (type) {
                     case "addCompany" -> {
                         TbCompany company = TbCompany.getInstance(req);
