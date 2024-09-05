@@ -62,7 +62,6 @@ public class TbCompany {
         String fiLeType = oldFileName.substring(oldFileName.lastIndexOf("."));
         String uuid = UUID.randomUUID().toString();
         String newFileName = uuid + fiLeType;
-
         companyPic.write(realPath + "/upload/images/" + newFileName);
 
         if (companyName != null && companyArea != null && companySize != null &&

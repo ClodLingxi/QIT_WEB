@@ -4,13 +4,17 @@ import edu.ouc.stu.model.TbResume;
 import edu.ouc.stu.model.TbUsers;
 import edu.ouc.stu.system.Tomcat;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
 import java.io.IOException;
+import java.util.UUID;
 
+@MultipartConfig
 @WebServlet("/ResumeClient")
 public class ResumeClient extends HttpServlet {
 
@@ -66,6 +70,27 @@ public class ResumeClient extends HttpServlet {
                             break;
                         }
                         failAction(req, resp);
+                    }
+                    case "uploadPicture" -> {
+
+                        Part resumePicture = req.getPart("resumePicture");
+                        String oldFileName = resumePicture.getSubmittedFileName();
+                        String realPath = req.getSession().getServletContext().getRealPath("/");
+                        String fiLeType = oldFileName.substring(oldFileName.lastIndexOf("."));
+                        String uuid = UUID.randomUUID().toString();
+                        String newFileName = uuid + fiLeType;
+                        resumePicture.write(realPath + "/upload/images/resumes/" + newFileName);
+
+                        TbResume tbResume = Tomcat.resumeMapper.selectByUserId(userId);
+                        tbResume.setResumePicture(newFileName);
+
+                        if (Tomcat.resumeMapper.updateByPrimaryKey(tbResume) > 0) {
+                            successAction(req, resp);
+                        }
+                        else {
+                            failAction(req, resp);
+                        }
+
                     }
                 }
             }

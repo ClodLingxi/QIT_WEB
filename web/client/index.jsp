@@ -107,16 +107,6 @@
             </div>
         </div>
     </div>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.jsp"
-                                                                                  target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635560750235172731.jpg" width="990"> </a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <jsp:useBean id="companyList" scope="request" type="java.util.List<edu.ouc.stu.model.TbCompany>"/>
     <jstl:forEach items="${companyList}" var="company">
@@ -135,53 +125,6 @@
             </div>
         </div>
     </jstl:forEach>
-    <div class="tn-grid">
-        <div class="tn-box tn-widget tn-widget-content tn-corner-all it-home-box">
-            <div class="tn-box-content tn-widget-content tn-corner-all">
-                <div class="it-company-keyimg tn-border-bottom tn-border-gray"><a href="recruit/company.jsp"
-                                                                                  target="_blank"> <img
-                        src="${pageContext.request.contextPath}/client/images/635386133707515461.jpg" width="990"> </a>
-                </div>
-                <div class="it-home-present">
-
-                    <div class="it-present-btn"><a class=" tn-button tn-button-home-apply" href="recruit/company.jsp">
-                        <span class="tn-button-text">我要申请</span> </a></div>
-                    <div class="it-present-text" style="padding-left:185px;">
-                        <div class="it-line01 it-text-bom">
-                            <p class="it-text-tit">职位</p>
-                            <p class="it-line01 it-text-explain"><span class="tn-icon it-home-arrow"></span> <a
-                                    href="job.html" target="_blank" title=".NET软件开发工程师">.NET软件开发工程师</a>
-                            </p>
-
-                        </div>
-                        <div class="it-line01 it-text-top">
-                            <p class="it-text-tit">薪资</p>
-                            <p class="it-line01 it-text-explain"><span class="tn-icon it-home-arrow"></span> <b
-                                    title="3000起">3000起</b></p>
-                        </div>
-                    </div>
-                    <div class="it-present-text">
-                        <div class="it-line01 it-text-bom">
-                            <p class="it-text-tit">职位</p>
-                            <p class="it-line01 it-text-explain"><span class="tn-icon it-home-arrow"></span> <span
-                                    class="tn-helper-right tn-action"> <a href="job.html" target="_blank"
-                                                                          class="tn-button tn-corner-all tn-button-text-only tn-button-semidlong"> <span
-                                    class="tn-button-text">更多职位</span> </a> </span> <a href="job.html"
-                                                                                           target="_blank"
-                                                                                           title=".NET软件开发工程师">.NET软件开发工程师</a>
-                            </p>
-
-                        </div>
-                        <div class="it-line01 it-text-top">
-                            <p class="it-text-tit">薪资</p>
-                            <p class="it-line01 it-text-explain"><span class="tn-icon it-home-arrow"></span> <b
-                                    title="3000起">3000起</b></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <script type="text/javascript">
         function setShare(title, url) {
             jiathis_config.title = title;

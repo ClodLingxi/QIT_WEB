@@ -1,15 +1,16 @@
 package edu.ouc.stu.model;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.ouc.stu.system.Tomcat;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.*;
 
 @Getter
 @Setter
-
 public class TbResume {
     private Integer resumeId;
 
@@ -50,16 +51,14 @@ public class TbResume {
         this.ResumeUserId = 0;
     }
 
-    public static TbResume getInstance(HttpServletRequest request) {
+    public static TbResume getInstance(HttpServletRequest request) throws ServletException, IOException {
         TbResume resume = new TbResume();
 
-        // Parse and set each field from the request parameters
         resume.setResumeId(parseInteger(request.getParameter("resumeId")));
         resume.setResumeName(request.getParameter("resumeName"));
-        resume.setResumePicture(request.getParameter("resumePicture"));
         resume.setResumeGender(request.getParameter("resumeGender"));
-
         String birthdayString = request.getParameter("resumeBirthday");
+
         if (birthdayString != null && !birthdayString.isEmpty()) {
             try {
                 SimpleDateFormat sdf = Tomcat.dataFormatter;
@@ -90,7 +89,6 @@ public class TbResume {
             return null;
         }
     }
-
 
 
 }

@@ -104,7 +104,7 @@
 					</table>
 					<div class="he"></div>
 				</div>
-				<div style="float:right" class="uploade"><img src="../images/person_img.jpg">
+				<div style="float:right" class="uploade"><img src="${pageContext.request.contextPath}/upload/images/resumes/${resume.resumePicture}" width="150px" height="150px">
 					<div align="center">
 						<a href="${pageContext.request.contextPath}/client/applicant/resumeBasicInfoPicUpload.jsp" class="uploade_btn">更换照片</a>
 					</div>
