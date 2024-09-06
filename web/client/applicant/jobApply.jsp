@@ -39,10 +39,10 @@
                                     <jstl:forEach items="${applyList}" var="apply">
                                         <jstl:set var="progress_width" value="1"/>
                                         <jstl:if test="${apply.applyState == 1}">
-                                            <jstl:set var="width" value="50" />
+                                            <jstl:set var="progress_width" value="50" />
                                         </jstl:if>
                                         <jstl:if test="${apply.applyState == 2}">
-                                            <jstl:set var="width" value="100" />
+                                            <jstl:set var="progress_width" value="100" />
                                         </jstl:if>
 
                                         <tr class="tn-table-grid-row">
@@ -72,7 +72,7 @@
                                             </td>
                                             <td class="tn-width-action2"><span class="tn-action"> <a
                                                     class="tn-action tn-action-text-icon tnui-apply-delete"
-                                                    href="${pageContext.request.contextPath}/ApplicantManage?type=deleteApply?id=${apply.applyId}"> <span
+                                                    href="${pageContext.request.contextPath}/ApplicantManage?type=deleteApply&id=${apply.applyId}"> <span
                                                     class="tn-icon it-icon-delete"></span><span
                                                     class="tn-action-text">删除</span></a> </span></td>
                                         </tr>

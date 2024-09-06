@@ -15,7 +15,7 @@ import java.io.IOException;
 public class ApplicantManage extends HttpServlet {
     private static final String SUCCESS_PATH = "/client/recruit/applysuccess.jsp";
 
-    private static void failAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private static void returnAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.sendRedirect(req.getHeader("referer"));
     }
 
@@ -24,11 +24,12 @@ public class ApplicantManage extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String type = req.getParameter("type");
         if (type != null) {
             TbUsers passport = (TbUsers) req.getSession().getAttribute("passport");
-            if (passport != null && Tomcat.userManager.validate(passport) != null) {
+            Integer userId = (Integer) Tomcat.userManager.validate(passport);
+            if (passport != null && userId > 0) {
                 switch (type) {
                     case "apply" -> {
                         TbApply tbApply = TbApply.getInstance(req);
@@ -37,10 +38,19 @@ public class ApplicantManage extends HttpServlet {
                             successAction(req, resp);
                             return;
                         }
-                        failAction(req, resp);
+                        returnAction(req, resp);
                     }
-                    case "query" -> {
-                        
+                    case "deleteApply" -> {
+                        String id = req.getParameter("id");
+                        if (id != null) {
+                            TbApply tbApply = Tomcat.applyMapper.selectByPrimaryKey(Integer.parseInt(id));
+                            if (tbApply != null && tbApply.getApplyUserId() == userId) {
+                                Tomcat.applyMapper.deleteByPrimaryKey(Integer.parseInt(id));
+                            }
+                            returnAction(req, resp);
+                            return;
+                        }
+                        returnAction(req, resp);
                     }
                 }
             }
