@@ -34,7 +34,7 @@ $(function(){
   <dd>
     <div class="title"> <span><img src="../images/leftico01.png" /></span>企业职位管理</div>
     <ul class="menuson">
-      <li><cite></cite><a href="jobApplyList.html" target="rightFrame">职位申请查看</a><i></i></li>
+      <li><cite></cite><a href="jobApplyList.jsp" target="rightFrame">职位申请查看</a><i></i></li>
       <li><cite></cite><a href="jobList.jsp" target="rightFrame">职位管理</a><i></i></li>
       <li><cite></cite><a href="companyList.jsp" target="rightFrame">企业管理</a><i></i></li>
     </ul>

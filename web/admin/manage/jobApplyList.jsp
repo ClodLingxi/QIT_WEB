@@ -1,3 +1,16 @@
+<%@ page import="edu.ouc.stu.model.TbUsers" %>
+<%@ page import="edu.ouc.stu.system.Tomcat" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+    TbUsers passport = (TbUsers) request.getSession().getAttribute("passport");
+    if (passport != null && Tomcat.userManager.validate(passport) != null && passport.getUserRole() == 1){
+        request.setAttribute("applyList", Tomcat.applyMapper.selectAll());
+    }
+%>
+
 <!doctype html>
 <html>
 <head>
@@ -63,22 +76,22 @@
         <td><a href="#" class="tablelink">申请审核</a> &nbsp;&nbsp;
         <a href="#" class="tablelink">邮件通知</a></td>
       </tr>
-      <tr height="50px">
-		<td>青软实训</td>
-		<td>对日软件外包</td>
-        <td>已申请</td>
-        <td>2015-6-8</td>
-        <td><a href="#" class="tablelink">申请审核</a> &nbsp;&nbsp;
-        <a href="#" class="tablelink">邮件通知</a></td>
-      </tr>
-      <tr height="50px">
-		<td>青软实训</td>
-		<td>对日软件外包</td>
-        <td>已申请</td>
-        <td>2015-6-8</td>
-        <td><a href="#" class="tablelink">申请审核</a> &nbsp;&nbsp;
-        <a href="#" class="tablelink">邮件通知</a></td>
-      </tr>
+    <jstl:forEach items="${applyList}" var="apply">
+        <tr height="50px">
+            <td>${apply.applyCompanyName}</td>
+            <td>${apply.applyJobName}</td>
+
+            <jstl:if test="${apply.applyState == 1}">
+                <td>未申请</td>
+            </jstl:if>
+            <jstl:if test="${apply.applyState == 2}">
+                <td>已申请</td>
+            </jstl:if>
+            <td>${apply.applyDate.year}-${apply.applyDate.month}-${apply.applyDate.day}</td>
+            <td><a href="#" class="tablelink">申请审核</a> &nbsp;&nbsp;
+                <a href="#" class="tablelink">邮件通知</a></td>
+        </tr>
+    </jstl:forEach>
     </tbody>
   </table>
 </div>

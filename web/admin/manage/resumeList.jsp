@@ -5,7 +5,7 @@
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     TbUsers passport = (TbUsers) session.getAttribute("passport");
-    if (passport != null && Tomcat.userManager.validate(passport) != null) {
+    if (passport != null && Tomcat.userManager.validate(passport) != null && passport.getUserRole() == 1) {
         request.setAttribute("resumeList", Tomcat.resumeMapper.selectAllResumes());
     }
 %>
@@ -52,8 +52,9 @@
                 <td>${resume.resumeEmail}</td>
                 <td>${resume.resumeExperience}</td>
                 <td>${resume.resumeTarget}</td>
-                <td><a href="resumeView.jsp?id=${resume.resumeId}" class="tablelink">查看</a> &nbsp;&nbsp;
-                    <a href="${pageContext.request.contextPath}/ResumeManage?type=deleteResume&id=${resume.resumeId}" class="tablelink"> 删除</a>
+                <td>
+                    <a href="resumeView.jsp?id=${resume.resumeId}" class="tablelink">查看</a> &nbsp;&nbsp;
+<%--                    <a href="${pageContext.request.contextPath}/ResumeManage?type=deleteResume&id=${resume.resumeId}" class="tablelink"> 删除</a>--%>
                 </td>
             </tr>
         </jstl:forEach>

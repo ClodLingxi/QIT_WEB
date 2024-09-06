@@ -1,4 +1,5 @@
 ﻿<%@ page import="edu.ouc.stu.system.Tomcat" %>
+<%@ page import="edu.ouc.stu.model.TbJob" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -6,7 +7,10 @@
 <%
   String id = request.getParameter("id");
   if(id == null) id = "1";
-  request.setAttribute("job", Tomcat.jobMapper.selectByPrimaryKey(Integer.parseInt(id)));
+  TbJob job = Tomcat.jobMapper.selectByPrimaryKey(Integer.parseInt(id));
+  request.setAttribute("job", job);
+  String endDate = Tomcat.dataFormatter.format(job.getJobEnddate());
+  request.setAttribute("endDate", endDate);
 %>
 
 <!DOCTYPE html>
@@ -29,7 +33,7 @@
     <div class="it-main">
       <div class="it-ctn-heading">
         <div class="it-title-line"> <span class="it-hover-text"><a href="#" target="_blank">其它同类职位</a><span style="float:left;margin-right:20px">
-          <div onmouseover="setShare(&quot;#{job.jobName}&quot;,&quot;http://www.itoffer.cn/Job/001004005-57&quot;)"> <a href="http://www.jiathis.com/share/?uid=您的UID" target="_blank">分享</a> </div>
+          <a href="http://www.jiathis.com/share/?uid=您的UID" target="_blank">分享</a>
           </span></span>
           <h3>${job.jobName}</h3>
         </div>
@@ -41,13 +45,13 @@
               <td class="it-table-title"> 招聘人数： </td>
               <td class="tn-border-rb"> ${job.jobHiringnum} </td>
               <td class="it-table-title"> 薪资： </td>
-              <td class="tn-border-rb"> 4万-4.5万/年 </td>
+              <td class="tn-border-rb"> ${job.jobSalary} </td>
             </tr>
             <tr>
               <td class="it-table-title"> 年龄要求： </td>
-              <td class="tn-border-rb"> 20岁~26岁 </td>
-              <td class="it-table-title"> 工作地区： </td>
-              <td class="tn-border-rb"> 历城区 </td>
+              <td class="tn-border-rb">  </td>
+              <td class="it-table-title"> 截至日期 </td>
+              <td class="tn-border-rb"> ${endDate} </td>
             </tr>
             <tr>
               <td class="it-table-title"> 学历要求： </td>
@@ -64,7 +68,6 @@
           </tbody>
         </table>
         <div class="it-post-count">
-          <div class="it-com-apply"> <a href="javascript:void(0)" title="您已经申请过！" class="tn-button it-smallbutton-apply-hover"></a> </div>
           <ul class="tn-text-note it-text-part">
             <li class="jobli"><span class="tn-explain-icon"><span class="tn-icon it-icon-time"></span><span class="tn-icon-text" id="leftTimeShowSpan">
               <label>已过期</label>
@@ -108,7 +111,7 @@
           <p align="left">辛 俊： 15140365693 QQ:2453435523</p>
           <p align="left">mail：xinj@itshixun.com</p>
         </div>
-        <div class="btn_bot"> <a class="tn-button-secondary" href="#" target="_blank"> <span style="color:#1faebc"  class="tn-button-text">查看公司信息</span> </a> <a title="您已经申请过！" class="tn-button-secondary" href="javascript:void(0)"> <span class="tn-button-text">此职位已经申请</span> </a> </div>
+        <div class="btn_bot"> <a class="tn-button-secondary" href="${pageContext.request.contextPath}/client/recruit/company.jsp?id=${job.companyId}" target="_blank"> <span style="color:#1faebc"  class="tn-button-text">查看公司信息</span> </a> </div>
       </div>
     </div>
     <div class="job_right">

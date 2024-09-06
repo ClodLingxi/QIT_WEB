@@ -25,6 +25,8 @@ public class TbJob {
 
     private Byte jobState;
 
+    private String jobSalary;
+
     private String companyName;
 
     public static TbJob getInstance(HttpServletRequest req, int userId) {

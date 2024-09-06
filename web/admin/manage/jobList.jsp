@@ -5,7 +5,7 @@
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     TbUsers passport = (TbUsers) session.getAttribute("passport");
-    if (passport != null && Tomcat.userManager.validate(passport) != null) {
+    if (passport != null && Tomcat.userManager.validate(passport) != null && passport.getUserRole() == 1) {
         String id = request.getParameter("id");
         String selectName = request.getParameter("selectName");
         if (id == null) request.setAttribute("jobList", Tomcat.jobMapper.selectAllJobsAndCompanyName());

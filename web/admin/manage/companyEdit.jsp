@@ -12,7 +12,7 @@
     }
     int id = Integer.parseInt(temp);
 
-    if (passport != null && id > 0 && Tomcat.userManager.validate(passport) != null) {
+    if (passport != null && id > 0 && Tomcat.userManager.validate(passport) != null && passport.getUserRole() == 1) {
         request.setAttribute("company", Tomcat.companyMapper.selectByPrimaryKey(id));
     }
 %>
