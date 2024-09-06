@@ -61,7 +61,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="edu.ouc.stu.model.TbApplicant">
+    <update     id="updateByPrimaryKeySelective" parameterType="edu.ouc.stu.model.TbApplicant">
         <!--@mbg.generated-->
         update tb_applicant
         <set>

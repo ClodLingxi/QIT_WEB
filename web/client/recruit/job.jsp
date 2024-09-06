@@ -29,7 +29,7 @@
     <div class="it-main">
       <div class="it-ctn-heading">
         <div class="it-title-line"> <span class="it-hover-text"><a href="#" target="_blank">其它同类职位</a><span style="float:left;margin-right:20px">
-          <div onmouseover="setShare(&quot;对日软件开发（提供岗前培训）&quot;,&quot;http://www.itoffer.cn/Job/001004005-57&quot;)"> <a href="http://www.jiathis.com/share/?uid=您的UID" target="_blank">分享</a> </div>
+          <div onmouseover="setShare(&quot;#{job.jobName}&quot;,&quot;http://www.itoffer.cn/Job/001004005-57&quot;)"> <a href="http://www.jiathis.com/share/?uid=您的UID" target="_blank">分享</a> </div>
           </span></span>
           <h3>${job.jobName}</h3>
         </div>

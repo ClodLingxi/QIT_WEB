@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.ouc.stu.mapper.TbApplyMapper">
+    <resultMap id="BaseResultMap" type="edu.ouc.stu.model.TbApply">
+        <!--@Table tb_apply-->
+        <id column="apply_id" jdbcType="INTEGER" property="applyId"/>
+        <result column="apply_userId" jdbcType="INTEGER" property="applyUserId"/>
+        <result column="apply_jobId" jdbcType="INTEGER" property="applyJobId"/>
+        <result column="apply_state" jdbcType="TINYINT" property="applyState"/>
+        <result column="apply_date" jdbcType="DATE" property="applyDate"/>
+        <result column="COMPANY_NAME" jdbcType="VARCHAR" property="applyCompanyName"/>
+        <result column="job_name" jdbcType="VARCHAR" property="applyJobName"/>
+        <result column="COMPANY_ID" jdbcType="INTEGER" property="applyCompanyId"/>
+    </resultMap>
+    <sql id="BasColumnList">
+        apply_id, apply_userId, apply_jobId, apply_state, apply_date
+    </sql>
+
+    <select id="selectAllByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="BasColumnList"/>, tc.COMPANY_NAME, tj.job_name, tc.COMPANY_ID
+        from tb_apply
+        join tb_job tj on tb_apply.apply_jobId = tj.job_id
+        join tb_company tc on tj.company_id = tc.COMPANY_ID
+        where apply_userId = #{applyUserId}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="BasColumnList"/>, tc.COMPANY_NAME, tj.job_name, tc.COMPANY_ID
+        from tb_apply
+        join tb_job tj on tb_apply.apply_jobId = tj.job_id
+        join tb_company tc on tj.company_id = tc.COMPANY_ID
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="Integer" resultMap="BaseResultMap">
+        select
+        <include refid="BasColumnList"/>, tc.COMPANY_NAME, tj.job_name, tc.COMPANY_ID
+        from tb_apply
+        join tb_job tj on tb_apply.apply_jobId = tj.job_id
+        join tb_company tc on tj.company_id = tc.COMPANY_ID
+        where apply_id = #{applyId, jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="Integer">
+        delete from tb_apply
+        where apply_id = #{applyId,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="edu.ouc.stu.model.TbApply">
+        insert into tb_apply (apply_userId, apply_jobId, apply_state, apply_date)
+        values (#{applyUserId}, #{applyJobId}, #{applyState}, #{applyDate})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="edu.ouc.stu.model.TbApply">
+        update tb_apply
+        set apply_userId = #{applyUserId},
+        apply_jobId = #{applyJobId},
+        apply_state = #{applyState}
+        where apply_id = #{applyId}
+    </update>
+</mapper>

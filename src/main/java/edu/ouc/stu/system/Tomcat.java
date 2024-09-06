@@ -1,9 +1,6 @@
 package edu.ouc.stu.system;
 
-import edu.ouc.stu.mapper.TbCompanyMapper;
-import edu.ouc.stu.mapper.TbJobMapper;
-import edu.ouc.stu.mapper.TbResumeMapper;
-import edu.ouc.stu.mapper.TbUsersMapper;
+import edu.ouc.stu.mapper.*;
 import edu.ouc.stu.model.TbUsers;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -26,6 +23,7 @@ public class Tomcat implements ServletContextListener {
     public static TbJobMapper jobMapper;
     public static TbCompanyMapper companyMapper;
     public static TbResumeMapper resumeMapper;
+    public static TbApplyMapper applyMapper;
 
     public static final SimpleDateFormat dataFormatter = new SimpleDateFormat("yyyy年 MM月 dd日");
 
@@ -39,6 +37,7 @@ public class Tomcat implements ServletContextListener {
         jobMapper = sqlSession.getMapper(TbJobMapper.class);
         companyMapper = sqlSession.getMapper(TbCompanyMapper.class);
         resumeMapper = sqlSession.getMapper(TbResumeMapper.class);
+        applyMapper = sqlSession.getMapper(TbApplyMapper.class);
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
