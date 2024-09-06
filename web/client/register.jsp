@@ -10,6 +10,7 @@
     <title>注册 - 锐聘网</title>
     <link href="${pageContext.request.contextPath}/client/css/base.css" type="text/css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/client/css/register.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/admin/js/jquery.js"></script>
     <meta content="大学生求职,大学生就业,大学生招聘,IT人才,IT人才招聘,大学生名企招聘,,大学生找工作,IT名企招聘，IT行业招聘，IT企业快速入职"
           name="keywords">
     <meta content="锐聘专注于为企业提供高效的人力资源解决方案，同时面向IT类技术人才推出快速一站式免费就业服务。秉承QST青软实训人才服务理念，为数千家企业量身定做个性化、全程化的人才培养体系，同时帮助中高级人才铺设成功之路，为人才和企业架设起沟通之桥。"
@@ -42,6 +43,12 @@
         }
 
     </script>
+    <script type="text/javascript">
+        function changeCode() {
+            console.log("Get Code Image..");
+            $("#verifyCode-img").attr("src", "${pageContext.request.contextPath}/CodeServlet?time=" + new Date().getTime());
+        }
+    </script>
 </head>
 
 <body>
@@ -63,9 +70,9 @@
                 </div>
                 <div class="span1">
                     <label class="tn-form-label">验证码：</label>
-                    <input name="ValidateCode" id="ValidateCode" class="tn-textbox-long" type="text">
-                    <span> <img src="${pageContext.request.contextPath}/client/images/CaptchaImage.jpg" title="点击换一换"> <a
-                            href="javascript:;">看不清？</a> </span>
+                    <input name="verifyCode" id="verifyCode" class="tn-textbox-long" type="text">
+                    <span> <img id="verifyCode-img" src="${pageContext.request.contextPath}/CodeServlet" title="点击换一换" onclick="changeCode()"> <a
+                            href="javascript:changeCode();" >看不清？</a> </span>
                 </div>
                 <div class="tn-form-row-button">
                     <div class="span1">
@@ -76,6 +83,9 @@
                             <label> 同意本站服务条款</label>
                             <a href="javascript:;">查看</a></p>
                     </div>
+                </div>
+                <div align="center">
+                    <font style="color: red;">${sessionScope.msg}</font>
                 </div>
                 <div class="clear"></div>
             </form>

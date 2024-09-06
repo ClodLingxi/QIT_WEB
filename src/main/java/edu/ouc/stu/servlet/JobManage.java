@@ -53,6 +53,7 @@ public class JobManage extends HttpServlet {
                         if (req.getParameter("id") != null) {
                             int id = Integer.parseInt(req.getParameter("id"));
                             if(Tomcat.jobMapper.deleteByPrimaryKey(id) > 0){
+                                Tomcat.applyMapper.deleteByJobId(id);
                                 successAction(req, resp);
                                 return;
                             }

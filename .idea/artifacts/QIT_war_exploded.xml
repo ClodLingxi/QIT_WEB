@@ -19,6 +19,7 @@
           <element id="library" level="project" name="Maven: jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0" />
           <element id="library" level="project" name="Maven: org.apache.taglibs:taglibs-standard-impl:1.2.5" />
           <element id="library" level="project" name="Maven: org.apache.taglibs:taglibs-standard-spec:1.2.5" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/ValidateCode.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="QIT/web/Web" />

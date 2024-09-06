@@ -19,6 +19,8 @@ public interface TbApplyMapper {
 
     int deleteByPrimaryKey(Integer applyId);
 
+    int deleteByJobId(Integer jobId);
+
     int insert(TbApply record);
 
     int updateByPrimaryKey(TbApply record);

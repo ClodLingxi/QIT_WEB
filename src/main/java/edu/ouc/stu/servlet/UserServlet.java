@@ -45,7 +45,8 @@ public class UserServlet extends HttpServlet {
     }
 
     private static void registerAction(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        //        if(!validateCode(req, resp)) return;
+
+        if(!validateCode(req, resp)) return;
 
         String role = req.getParameter("role");
         if (role != null && role.equals("user")) {

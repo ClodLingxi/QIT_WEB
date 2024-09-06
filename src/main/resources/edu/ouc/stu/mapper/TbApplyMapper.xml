@@ -57,6 +57,11 @@
         where apply_id = #{applyId,jdbcType=INTEGER}
     </delete>
 
+    <delete id="deleteByJobId" parameterType="Integer">
+        delete from tb_apply
+        where apply_jobId = #{jobId}
+    </delete>
+
     <insert id="insert" parameterType="edu.ouc.stu.model.TbApply">
         insert into tb_apply (apply_userId, apply_jobId, apply_state, apply_date)
         values (#{applyUserId}, #{applyJobId}, #{applyState}, #{applyDate})

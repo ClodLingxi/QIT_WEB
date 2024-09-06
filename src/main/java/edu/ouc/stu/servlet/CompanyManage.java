@@ -12,6 +12,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
 
 @MultipartConfig
 @WebServlet("/CompanyManage")
@@ -43,7 +46,13 @@ public class CompanyManage extends HttpServlet {
                     case "updateCompany" -> {
                         if (req.getParameter("id") != null) {
                             int id = Integer.parseInt(req.getParameter("id"));
-                            TbCompany company = TbCompany.getInstance(req, id);
+                            TbCompany company = Tomcat.companyMapper.selectByPrimaryKey(id);
+                            if (company != null && !company.getCompanyPic().isEmpty()) {
+                                String fileName = company.getCompanyPic();
+                                String realPath = req.getSession().getServletContext().getRealPath("/");
+                                Files.deleteIfExists(Path.of(realPath + "/upload/images/" + fileName));
+                            }
+                            company = TbCompany.getInstance(req, id);
                             if(company != null){
                                 if(Tomcat.companyMapper.updateByPrimaryKey(company) > 0){
                                     successAction(req, resp);
