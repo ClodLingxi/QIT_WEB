@@ -1,4 +1,4 @@
-﻿<%@ page import="edu.ouc.stu.model.TbResume" %>
+﻿    <%@ page import="edu.ouc.stu.model.TbResume" %>
 <%@ page import="edu.ouc.stu.system.Tomcat" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>

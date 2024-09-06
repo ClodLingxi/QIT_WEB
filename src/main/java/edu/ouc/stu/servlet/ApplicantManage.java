@@ -13,47 +13,46 @@ import java.io.IOException;
 
 @WebServlet("/ApplicantManage")
 public class ApplicantManage extends HttpServlet {
-    private static final String SUCCESS_PATH = "/client/recruit/applysuccess.jsp";
+    private static final String SUCCESS_PATH = "/client/recruit/applysuccess.jsp?companyName=%s&jobName=%s";
 
     private static void returnAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.sendRedirect(req.getHeader("referer"));
     }
 
-    private static void successAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.sendRedirect(SUCCESS_PATH);
+    private static void successAction(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        req.getRequestDispatcher(SUCCESS_PATH).forward(req, resp);
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String type = req.getParameter("type");
         if (type != null) {
             TbUsers passport = (TbUsers) req.getSession().getAttribute("passport");
             Integer userId = (Integer) Tomcat.userManager.validate(passport);
-            if (passport != null && userId > 0) {
+            String jobId = req.getParameter("id");
+            if (passport != null && userId > 0 && jobId != null) {
+                passport.setUserId(userId);
                 switch (type) {
-                    case "apply" -> {
-                        TbApply tbApply = TbApply.getInstance(req);
-                        if (tbApply != null) {
-                            Tomcat.applyMapper.insert(tbApply);
-                            successAction(req, resp);
-                            return;
+                    case "addApply" -> {
+                        TbApply tbApply = Tomcat.applyMapper.selectByUserIdAndJobId(userId, jobId);
+                        if (tbApply == null) {
+                            tbApply = TbApply.getInstance(req);
+                            if (tbApply != null) {
+                                Tomcat.applyMapper.insert(tbApply);
+                                successAction(req, resp);
+                                return;
+                            }
                         }
-                        returnAction(req, resp);
                     }
                     case "deleteApply" -> {
-                        String id = req.getParameter("id");
-                        if (id != null) {
-                            TbApply tbApply = Tomcat.applyMapper.selectByPrimaryKey(Integer.parseInt(id));
-                            if (tbApply != null && tbApply.getApplyUserId() == userId) {
-                                Tomcat.applyMapper.deleteByPrimaryKey(Integer.parseInt(id));
-                            }
-                            returnAction(req, resp);
-                            return;
+                        TbApply tbApply = Tomcat.applyMapper.selectByPrimaryKey(Integer.parseInt(jobId));
+                        if (tbApply != null && tbApply.getApplyUserId() == userId) {
+                            Tomcat.applyMapper.deleteByPrimaryKey(Integer.parseInt(jobId));
                         }
-                        returnAction(req, resp);
                     }
                 }
             }
+            returnAction(req, resp);
         }
     }
 

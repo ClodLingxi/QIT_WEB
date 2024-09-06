@@ -60,7 +60,8 @@
                 <div class="it-title-line">
                     <h3> 职位 </h3>
                 </div>
-            </div><!--职位列表-->
+            </div>
+            <!--职位列表-->
             <jstl:forEach items="${jobList}" var="job">
                 <div class="it-post-box tn-border-dashed">
                     <div class="it-post-name">
@@ -68,8 +69,10 @@
                                                                     href="${pageContext.request.contextPath}/client/recruit/job.jsp?id=${job.jobId}" target=_blank><span
                                 class="tn-icon-view"></span><span class=tn-action-text>查看详细</span> </a><a
                                 class="tn-button-small"
-                                href="${pageContext.request.contextPath}/ApplicantManage?type=apply&id=${job.jobId}"><span
-                                class="tn-button-text">申请</span> </a></div>
+                                href="${pageContext.request.contextPath}/ApplicantManage?type=addApply&id=${job.jobId}&companyName=${job.companyName}&jobName=${job.jobName}"><span
+                                class="tn-button-text">
+                            申请
+                        </span> </a></div>
                         <h3><a title=${job.jobName} href="${pageContext.request.contextPath}/client/recruit/job.jsp?id=${job.jobId}"
                                target=_blank>${job.jobName}</a></h3>
                     </div>

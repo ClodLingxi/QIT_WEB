@@ -17,6 +17,15 @@
         apply_id, apply_userId, apply_jobId, apply_state, apply_date
     </sql>
 
+    <select id="selectByUserIdAndJobId" resultMap="BaseResultMap">
+        select
+        <include refid="BasColumnList"/>, tc.COMPANY_NAME, tj.job_name, tc.COMPANY_ID
+        from tb_apply
+        join tb_job tj on tb_apply.apply_jobId = tj.job_id
+        join tb_company tc on tj.company_id = tc.COMPANY_ID
+        where apply_userId = #{applyUserId} and apply_jobId = #{jobId}
+    </select>
+
     <select id="selectAllByUserId" resultMap="BaseResultMap">
         select
         <include refid="BasColumnList"/>, tc.COMPANY_NAME, tj.job_name, tc.COMPANY_ID
