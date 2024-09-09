@@ -39,7 +39,7 @@
         </thead>
         <tbody>
 
-        <jsp:useBean id="userList" scope="request" type="java.util.List"/>
+        <jsp:useBean id="userList" scope="request" type="java.util.List<edu.ouc.stu.model.TbUsers>"/>
         <jstl:forEach items="${userList}" var="user">
             <tr height="50px">
                 <td><input name="" type="checkbox" value=""/></td>
