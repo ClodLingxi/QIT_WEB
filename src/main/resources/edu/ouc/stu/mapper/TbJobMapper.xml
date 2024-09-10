@@ -3,7 +3,7 @@
 <mapper namespace="edu.ouc.stu.mapper.TbJobMapper">
     <resultMap id="BaseResultMap" type="edu.ouc.stu.model.TbJob">
         <!--@mbg.generated-->
-        <!--@Table qit.tb_job-->
+        <!--@Table tb_job-->
         <id column="job_id" jdbcType="INTEGER" property="jobId"/>
         <result column="job_name" jdbcType="VARCHAR" property="jobName"/>
         <result column="job_companyId" jdbcType="INTEGER" property="companyId"/>
@@ -28,20 +28,20 @@
     <select id="selectByParamAndCompanyName" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbJob">
         select
         <include refid="Base_Column_List"/>, tc.COMPANY_NAME
-        from tb_job join tb_company tc on tb_job.job_companyId = tc.COMPANY_ID
+        from tb_job join tb_company tc on job_companyId = tc.COMPANY_ID
         <trim prefix="where" suffixOverrides="and">
             <if test='companyId != null and companyId != "0"'>
-                tb_job.job_companyId = #{companyId} and
+                job_companyId = #{companyId} and
             </if>
             <if test='selectName != null and selectName != ""'>
-                tb_job.job_name like concat('%', #{selectName}, '%')
+                job_name like concat('%', #{selectName}, '%')
             </if>
         </trim>
     </select>
     <select id="selectAllJobsAndCompanyName" resultMap="BaseResultMap" resultType="edu.ouc.stu.model.TbJob">
         select
-        job_id, job_name, tb_job.job_companyId, job_hiringNum, job_applicantNum, job_endDate, job_state, COMPANY_NAME
-        from tb_job join qit.tb_company tc on tb_job.job_companyId = tc.COMPANY_ID
+        <include refid="Base_Column_List"/>, tc.COMPANY_NAME
+        from tb_job join qit.tb_company tc on job_companyId = tc.COMPANY_ID
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         <!--@mbg.generated-->

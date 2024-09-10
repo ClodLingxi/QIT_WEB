@@ -19,36 +19,36 @@
 
     <select id="selectByUserIdAndJobId" resultMap="BaseResultMap">
         select
-        <include refid="BasColumnList"/>, tc.COMPANY_NAME, tj.job_name, tc.COMPANY_ID
+        <include refid="BasColumnList"/>, tc.COMPANY_NAME, job_name, tc.COMPANY_ID
         from tb_apply
-        join tb_job tj on tb_apply.apply_jobId = tj.job_id
-        join tb_company tc on tj.company_id = tc.COMPANY_ID
+        join tb_job on tb_apply.apply_jobId = job_id
+        join tb_company tc on tb_job.company_id = tc.COMPANY_ID
         where apply_userId = #{applyUserId} and apply_jobId = #{jobId}
     </select>
 
     <select id="selectAllByUserId" resultMap="BaseResultMap">
         select
-        <include refid="BasColumnList"/>, tc.COMPANY_NAME, tj.job_name, tc.COMPANY_ID
+        <include refid="BasColumnList"/>, tc.COMPANY_NAME, job_name, tc.COMPANY_ID
         from tb_apply
-        join tb_job tj on tb_apply.apply_jobId = tj.job_id
-        join tb_company tc on tj.company_id = tc.COMPANY_ID
+        join tb_job on tb_apply.apply_jobId = job_id
+        join tb_company tc on company_id = tc.COMPANY_ID
         where apply_userId = #{applyUserId}
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
         select
-        <include refid="BasColumnList"/>, tc.COMPANY_NAME, tj.job_name, tc.COMPANY_ID
+        <include refid="BasColumnList"/>, tc.COMPANY_NAME, job_name, tc.COMPANY_ID
         from tb_apply
-        join tb_job tj on tb_apply.apply_jobId = tj.job_id
-        join tb_company tc on tj.company_id = tc.COMPANY_ID
+        join tb_job on tb_apply.apply_jobId = job_id
+        join tb_company tc on company_id = tc.COMPANY_ID
     </select>
 
     <select id="selectByPrimaryKey" parameterType="Integer" resultMap="BaseResultMap">
         select
-        <include refid="BasColumnList"/>, tc.COMPANY_NAME, tj.job_name, tc.COMPANY_ID
+        <include refid="BasColumnList"/>, tc.COMPANY_NAME, job_name, tc.COMPANY_ID
         from tb_apply
-        join tb_job tj on tb_apply.apply_jobId = tj.job_id
-        join tb_company tc on tj.company_id = tc.COMPANY_ID
+        join tb_job on tb_apply.apply_jobId = job_id
+        join tb_company tc on company_id = tc.COMPANY_ID
         where apply_id = #{applyId, jdbcType=INTEGER}
     </select>
 
