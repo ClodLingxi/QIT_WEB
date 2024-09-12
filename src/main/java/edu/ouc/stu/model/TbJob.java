@@ -38,11 +38,6 @@ public class TbJob {
     }
 
     public static TbJob getInstance(HttpServletRequest req) {
-
-//        if (userName != null && userPwd != null && userRealname != null && userEmail != null
-//                && userRole != null && userState != null) {
-//            return new TbJob(-1, userName, userPwd, userRealname, userEmail, Integer.parseInt(userRole), Integer.parseInt(userState));
-//        } return null;
         return null;
     }
 }

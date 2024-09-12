@@ -29,12 +29,12 @@ public class ApplicantManage extends HttpServlet {
         if (type != null) {
             TbUsers passport = (TbUsers) req.getSession().getAttribute("passport");
             Integer userId = (Integer) Tomcat.userManager.validate(passport);
-            String jobId = req.getParameter("id");
-            if (passport != null && userId > 0 && jobId != null) {
+            String applyId = req.getParameter("id");
+            if (passport != null && userId > 0 && applyId != null) {
                 passport.setUserId(userId);
                 switch (type) {
                     case "addApply" -> {
-                        TbApply tbApply = Tomcat.applyMapper.selectByUserIdAndJobId(userId, jobId);
+                        TbApply tbApply = Tomcat.applyMapper.selectByUserIdAndJobId(userId, applyId);
                         if (tbApply == null) {
                             tbApply = TbApply.getInstance(req);
                             if (tbApply != null) {
@@ -45,9 +45,9 @@ public class ApplicantManage extends HttpServlet {
                         }
                     }
                     case "deleteApply" -> {
-                        TbApply tbApply = Tomcat.applyMapper.selectByPrimaryKey(Integer.parseInt(jobId));
+                        TbApply tbApply = Tomcat.applyMapper.selectByPrimaryKey(Integer.parseInt(applyId));
                         if (tbApply != null && tbApply.getApplyUserId() == userId) {
-                            Tomcat.applyMapper.deleteByPrimaryKey(Integer.parseInt(jobId));
+                            Tomcat.applyMapper.deleteByPrimaryKey(Integer.parseInt(applyId));
                         }
                     }
                 }

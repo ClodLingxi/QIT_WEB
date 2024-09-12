@@ -38,7 +38,7 @@ public class UserServlet extends HttpServlet {
     private static void exitAction(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String role = req.getParameter("role");
         if (role != null && role.equals("admin")) {
-            resp.sendRedirect(req.getContextPath() + CLIENT_PATH);
+            resp.sendRedirect(req.getContextPath() + ADMIN_PATH);
         }
         else resp.sendRedirect(req.getContextPath() + "/client/login.jsp");
         req.getSession().invalidate();

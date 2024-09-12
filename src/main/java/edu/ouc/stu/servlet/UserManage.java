@@ -20,6 +20,27 @@ public class UserManage extends HttpServlet {
     }
 
     private static void successAction(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        String role = req.getParameter("userRole");
+        String selectName = req.getParameter("userName");
+        String pageNum = req.getParameter("pageNum");
+        int num = 0;
+        if (pageNum != null){
+            num = (Integer.parseInt(pageNum) - 1) * 20;
+            req.setAttribute("pageNum", pageNum);
+        }
+        else req.setAttribute("pageNum", "1");
+
+        List<TbUsers> userList;
+        if (role == null){
+            userList = Tomcat.userManager.selectSomeUsers(num);
+        } else userList = Tomcat.userManager.selectSomeUsersByParam(num, role, selectName);
+
+        if (userList == null) userList = new LinkedList<>();
+
+        req.setAttribute("userList", userList);
+
+        Integer userCount = Tomcat.userManager.countAllUsers();
+        req.setAttribute("totalPage", (userCount / 20) + 1);
         req.getRequestDispatcher("/admin/manage/userList.jsp").forward(req, resp);
     }
 
@@ -60,27 +81,6 @@ public class UserManage extends HttpServlet {
                         }
                     }
                     case "getUser" -> {
-                        String role = req.getParameter("userRole");
-                        String selectName = req.getParameter("userName");
-                        String pageNum = req.getParameter("pageNum");
-                        int num = 0;
-                        if (pageNum != null){
-                            num = (Integer.parseInt(pageNum) - 1) * 20;
-                            req.setAttribute("pageNum", pageNum);
-                        }
-                        else req.setAttribute("pageNum", "1");
-
-                        List<TbUsers> userList;
-                        if (role == null){
-                            userList = Tomcat.userManager.selectSomeUsers(num);
-                        } else userList = Tomcat.userManager.selectSomeUsersByParam(num, role, selectName);
-
-                        if (userList == null) userList = new LinkedList<>();
-
-                        req.setAttribute("userList", userList);
-
-                        Integer userCount = Tomcat.userManager.countAllUsers();
-                        req.setAttribute("totalPage", (userCount / 20) + 1);
                         successAction(req, resp);
                         return;
                     }
